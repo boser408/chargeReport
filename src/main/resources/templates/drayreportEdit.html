@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Surpath Quote Result Table</title>
+    <base th:href="@{/}">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="css/dataTables/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/myquoteformCSS.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        table{
+            width: 1500px;
+            margin-left: 50px;
+            border: 1px double;
+            border-color: #0d6aad;
+
+        }
+        td{
+            text-align: center;
+            border: 1px solid;
+            border-color: #0d6aad;
+        }
+        input[type=button]{
+            height: 22px;
+            text-align: center;
+            font-size: small;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Service Provider Name</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="/logout"><i class=""></i> Logout</a></li>
+        </ul>
+
+
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="pages/chargeEntrance.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dray Report Review and Edit</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <label>Dray Report Edit</label>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="" id="SP">
+                                    <thead>
+                                    <tr>
+                                        <td class="firstCol">ID</td>
+                                        <td>RefID</td>
+                                        <td>Category</td>
+                                        <td>Rate/uom</td>
+                                        <td>Qty</td>
+                                        <td>UOM</td>
+                                        <td>Charge</td>
+                                        <td>Start(YYYY-MM-DD)</td>
+                                        <td>End(YYYY-MM-DD)</td>
+                                        <td>CostAdjust</td>
+                                        <td>Total</td>
+                                        <td>Note1</td>
+                                        <td>CostStatus</td>
+                                        <td>Save</td>
+                                        <td>Discard</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr >
+                                        <td class="firstCol" id="myid" th:text="${report.id}"></td>
+                                        <td id="hidstart" hidden="hidden">
+                                            <select id="ctnr">
+                                                <option value="">Please Select</option>
+                                                <option th:selected="${report.refID eq ctnrid.name}"
+                                                        th:each="ctnrid:${ctnrlist}"
+                                                        th:value="${ctnrid.name}" th:text="${ctnrid.name}"
+                                                        >
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td id="hidend"><input id="hidctnr" class="normInput" name="rpt" type="text" th:value="${report.refID}"></td>
+                                        <td id="hidinopen" hidden="hidden">
+                                            <select id="type">
+                                               <option value="">Please Select</option>
+                                               <option th:each="type:${typelist}"
+                                                       th:value="${type.type}" th:text="${type.type}" th:selected="${type.type}">
+                                               </option>
+                                            </select>
+                                        </td>
+                                        <td id="hidwhenclick"><input id="hidtype" class="mediuInput" name="rpt" type="text" th:value="${report.category}"></td>
+                                        <td><input id="peruom" class="normInput" name="rpt" type="text" th:value="${report.rateperuom}"></td>
+                                        <td class="firstCol"><input id="qty" class="smallInput" name="rpt" type="text" th:value="${report.qty}"></td>
+                                        <td><input class="normInput" name="rpt" type="text" id="uom" th:value="${report.uom}"></td>
+                                        <td ><input id="charge" class="normInput" name="rpt" type="text" readonly="readonly" th:value="${report.charge}"></td>
+                                        <td class="time-tb"><input class="mediuInput" name="rpt" type="text" th:value="${report.startTime}"></td>
+                                        <td class="time-tb"><input class="mediuInput" name="rpt" type="text" th:value="${report.endTime}"></td>
+                                        <td><input id="adjust" class="normInput" name="rpt" type="text" th:value="${report.costAdjust}"></td>
+                                        <td><input id="total" class="normInput" name="rpt" type="text" readonly="readonly" th:value="${report.total}"></td>
+                                        <td><input name="rpt" type="text" th:value="${report.note1}" class="noteInput"></td>
+                                        <td>
+                                            <label>
+                                            <select class="cc" id="costStatus">
+                                                <option>Estimated</option>
+                                                <option>Confirmed</option>
+                                            </select>
+                                            </label>
+                                        </td>
+                                        <td><input type="button" value="SaveEdit" id="update"></td>
+                                        <td><a th:href="@{/drayrpt/sqlfindAll}">Discard</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- DataTables JavaScript -->
+<script src="js/dataTables/jquery.dataTables.min.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+  $("#type").change(function () {
+      let tp=$("#type").val();
+      $.post("/drayrpt/sqlbindChange","type="+tp,function (data) {
+          $("#uom").val(data);
+      },"text")
+  })
+  $("#hidctnr").click(function () {
+      $("#hidend").attr("hidden","hidden");
+      $("#hidctnr").attr('hidden','hidden');
+      $("#hidstart").removeAttr("hidden");
+  })
+
+  $("#hidtype").click(function () {
+    $("#hidwhenclick").attr("hidden","hidden");
+    $("#hidtype").attr('hidden','hidden');
+    $("#hidinopen").removeAttr("hidden");
+  })
+
+  $("#peruom").change(function () {
+      let peruom=$("#peruom").val();
+      let qty=$("#qty").val();
+      let ajs=$("#adjust").val();
+      if(ajs.length===0){ajs=0}
+      let charge=(Math.round(parseFloat(qty)*parseFloat(peruom)*100))/100;
+      let total=(Math.round((parseFloat(ajs)+parseFloat(charge))*100))/100;
+      $("#charge").val(charge);
+      $("#total").val(total);
+  })
+  $("#qty").change(function () {
+      let peruom=$("#peruom").val();
+      let qty=$("#qty").val();
+      let ajs=$("#adjust").val();
+      if(ajs.length===0){ajs=0}
+      let charge=(Math.round(parseFloat(qty)*parseFloat(peruom)*100))/100;
+      let total=(Math.round((parseFloat(ajs)+parseFloat(charge))*100))/100;
+      $("#charge").val(charge);
+      $("#total").val(total);
+  })
+  $("#adjust").change(function () {
+      let ajs=$("#adjust").val();
+      let charge=$("#charge").val();
+      let total=(Math.round((parseFloat(ajs)+parseFloat(charge))*100))/100;
+      $("#total").val(total);
+  })
+    $("#update").click(function () {
+        var rptUpdates=[];
+        let myid=$("#myid").text();
+        let costStatus=$("#costStatus").val();
+        let ct=$("#ctnr").val();
+        $("#hidctnr").val(ct);
+        if($("#type").is(":hidden")){
+        }else {
+            let tp=$("#type").val();
+            $("#hidtype").val(tp);
+        }
+        var inputArray=$("input[name='rpt']");
+        inputArray.each(function () {
+            rptUpdates.push($(this).val());
+        })
+        if(rptUpdates[0].length*rptUpdates[1].length*rptUpdates[5].length*rptUpdates[6].length*rptUpdates[10].length===0){
+            alert("RefID"+", "+"Category "+", "+"TotalCharge"+", "+"Sart Time"+ ", "+"Note " +" cannot be Empty, Please Check!");
+        }else {
+            $.post("/drayrpt/sqlupdate","myid="+myid+"&costStatus="+costStatus+"&rptUpdates="+rptUpdates,function (data) {
+                window.location.href="/drayrpt/sqlfindAll";
+            },"text");
+        }
+        window.location.href="/drayrpt/sqlfindAll";
+    })
+
+    function f1() {
+        let input=document.getElementsByTagName("input");
+        let rateUpdates=[];
+        for(let i=0;i<input.length;i++){
+            if("rate"===input[i].name)
+                rateUpdates.push(input[i].value);
+        }
+        alert(rateUpdates);
+    }
+
+</script>
+
+</body>
+</html>

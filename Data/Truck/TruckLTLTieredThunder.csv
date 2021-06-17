@@ -1,0 +1,135 @@
+﻿From,To,JumpPoint,LowRates,HighRates,JumpUom
+LGB,ONT8,7,50,45,Pallet
+LGB,LGB8,7,50,45,Pallet
+LGB,LAX9,7,50,45,Pallet
+LGB,XIX6,7,50,45,Pallet
+LGB,ONT2,7,55,50,Pallet
+LGB,ONT6,7,55,50,Pallet
+LGB,ONT9,7,55,50,Pallet
+LGB,SNA4,7,55,50,Pallet
+LGB,LGB4,7,55,50,Pallet
+LGB,LGB6,7,55,50,Pallet
+LGB,KRB1,7,60,55,Pallet
+LGB,OAK3,7,100,95,Pallet
+LGB,SJC7,7,100,95,Pallet
+LGB,SMF3,7,100,95,Pallet
+LGB,SCK1,7,100,95,Pallet
+LGB,PHX3,7,100,95,Pallet
+LGB,PHX5,7,100,95,Pallet
+LGB,PHX7,7,100,95,Pallet
+LGB,GYR3,7,100,95,Pallet
+LGB,LAS1,7,100,95,Pallet
+LGB,LAS6,7,100,95,Pallet
+LGB,RNO4,7,150,145,Pallet
+LGB,SLC3,7,200,190,Pallet
+LGB,FTW1,7,200,190,Pallet
+LGB,DFW6,7,200,190,Pallet
+LGB,DFW9,7,200,190,Pallet
+LGB,SAT1,7,210,200,Pallet
+LGB,MDW2,7,250,240,Pallet
+LGB,MDW8,7,270,260,Pallet
+LGB,IND2,7,270,260,Pallet
+LGB,IND4,7,270,260,Pallet
+LGB,IND5,7,270,260,Pallet
+LGB,IND9,7,270,260,Pallet
+LGB,DET1,7,280,270,Pallet
+LGB,DET2,7,280,270,Pallet
+LGB,CMH2,7,280,270,Pallet
+LGB,CLT2,7,300,290,Pallet
+LGB,MDT1,7,350,340,Pallet
+LGB,ABE4,7,350,340,Pallet
+LGB,ABE8,7,350,340,Pallet
+LGB,AVP1,7,350,340,Pallet
+Chicago,MDW2,5,80,70,Pallet
+Chicago,MDW6,5,80,70,Pallet
+Chicago,MDW9,5,80,70,Pallet
+Chicago,MDW7,5,80,75,Pallet
+Chicago,MDW8,5,80,75,Pallet
+Chicago,STL4,5,110,100,Pallet
+Chicago,IND1,5,120,110,Pallet
+Chicago,IND2,5,120,110,Pallet
+Chicago,IND3,5,120,110,Pallet
+Chicago,IND4,5,120,110,Pallet
+Chicago,IND5,5,120,110,Pallet
+Chicago,IND9,5,120,110,Pallet
+Chicago,SDF8,5,120,110,Pallet
+Chicago,MQJ1,5,100,100,Pallet
+Chicago,TUL1,5,130,120,Pallet
+Chicago,MKC4,5,130,120,Pallet
+Chicago,MEM1,5,150,140,Pallet
+Chicago,DET1,5,125,115,Pallet
+Chicago,DET2,5,125,115,Pallet
+Chicago,CMH1,5,140,140,Pallet
+Chicago,CMH2,5,140,140,Pallet
+Chicago,CMH6,5,140,140,Pallet
+Chicago,CVG1,5,125,115,Pallet
+Chicago,CVG2,5,125,115,Pallet
+Chicago,CVG3,5,125,115,Pallet
+Chicago,BNA2,5,180,170,Pallet
+Chicago,FTW1,5,200,200,Pallet
+Chicago,FTW2,5,200,200,Pallet
+Chicago,CLT2,5,180,170,Pallet
+Chicago,MDW2,10,70,45,Pallet
+Chicago,MDW6,10,70,45,Pallet
+Chicago,MDW9,10,70,45,Pallet
+Chicago,MDW7,10,75,50,Pallet
+Chicago,MDW8,10,75,50,Pallet
+Chicago,STL4,10,100,90,Pallet
+Chicago,IND1,10,110,100,Pallet
+Chicago,IND2,10,110,100,Pallet
+Chicago,IND3,10,110,100,Pallet
+Chicago,IND4,10,110,100,Pallet
+Chicago,IND5,10,110,100,Pallet
+Chicago,IND9,10,110,100,Pallet
+Chicago,SDF8,10,110,100,Pallet
+Chicago,MQJ1,10,100,100,Pallet
+Chicago,TUL1,10,120,110,Pallet
+Chicago,MKC4,10,120,110,Pallet
+Chicago,MEM1,10,140,130,Pallet
+Chicago,DET1,10,115,105,Pallet
+Chicago,DET2,10,115,105,Pallet
+Chicago,CMH1,10,140,140,Pallet
+Chicago,CMH2,10,140,140,Pallet
+Chicago,CMH6,10,140,140,Pallet
+Chicago,CVG1,10,115,105,Pallet
+Chicago,CVG2,10,115,105,Pallet
+Chicago,CVG3,10,115,105,Pallet
+Chicago,BNA2,10,170,160,Pallet
+Chicago,FTW1,10,200,200,Pallet
+Chicago,FTW2,10,200,200,Pallet
+Chicago,CLT2,10,170,160,Pallet
+Portland,PDX5,1,110,70,Pallet
+Portland,PDX6,1,110,70,Pallet
+Portland,PDX7,1,150,100,Pallet
+Portland,PDX9,1,110,70,Pallet
+Portland,BFI3,1,150,110,Pallet
+Portland,BFI5,1,140,100,Pallet
+Portland,BFI7,1,140,100,Pallet
+Portland,SEA6,1,140,100,Pallet
+Portland,RNO1,1,180,170,Pallet
+Portland,RNO4,1,180,160,Pallet
+Portland,PDX5,4,70,60,Pallet
+Portland,PDX6,4,70,60,Pallet
+Portland,PDX7,4,100,80,Pallet
+Portland,PDX9,4,70,60,Pallet
+Portland,BFI3,4,110,90,Pallet
+Portland,BFI5,4,100,80,Pallet
+Portland,BFI7,4,100,80,Pallet
+Portland,SEA6,4,100,80,Pallet
+Portland,RNO1,4,170,160,Pallet
+Portland,RNO4,4,160,150,Pallet
+New Jersey,ABE4,9,85,60,Pallet
+New Jersey,ABE8,9,85,60,Pallet
+New Jersey,TEB3,9,85,60,Pallet
+New Jersey,TEB6,9,85,60,Pallet
+New Jersey,ACY2,9,85,60,Pallet
+New Jersey,PHL4,9,100,75,Pallet
+New Jersey,PHL5,9,100,75,Pallet
+New Jersey,PHL6,9,100,75,Pallet
+New Jersey,MDT1,9,100,75,Pallet
+New Jersey,AVP1,9,100,75,Pallet
+New Jersey,AVP3,9,100,75,Pallet
+New Jersey,BWI4,9,135,105,Pallet
+New Jersey,RIC1,9,135,105,Pallet
+New Jersey,CLT3,9,140,110,Pallet
+New Jersey,BOS7,9,140,110,Pallet

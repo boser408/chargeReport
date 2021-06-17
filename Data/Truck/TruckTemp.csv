@@ -1,0 +1,48 @@
+﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCap,Currency
+53 feet trailer to Amazon FC,ONT8,575,Truck,0,0,USD
+53 feet trailer to Amazon FC,ONT9,575,Truck,0,0,USD
+53 feet trailer to Amazon FC,LGB8,550,Truck,0,0,USD
+53 feet trailer to Amazon FC,LGB6,575,Truck,0,0,USD
+53 feet trailer to Amazon FC,LGB9,575,Truck,0,0,USD
+53 feet trailer to Amazon FC,LGB4,625,Truck,0,0,USD
+53 feet trailer to Amazon FC,SBD2,625,Truck,0,0,USD
+53 feet trailer to Amazon FC,LAX9,550,Truck,0,0,USD
+53 feet trailer to Amazon FC,SNA4,550,Truck,0,0,USD
+53 feet trailer to Amazon FC,LAS1,1980,Truck,0,0,USD
+53 feet trailer to Amazon FC,LAS6,1980,Truck,0,0,USD
+LTL to Amazon FC,ONT8,40,pallet,100,0,USD
+LTL to Amazon FC,ONT9,40,pallet,100,0,USD
+LTL to Amazon FC,LGB8,40,pallet,100,0,USD
+LTL to Amazon FC,LGB6,40,pallet,100,0,USD
+LTL to Amazon FC,LGB4,45,pallet,150,0,USD
+LTL to Amazon FC,KRB1,45,pallet,100,0,USD
+LTL to Amazon FC,LAX9,40,pallet,100,0,USD
+LTL to Amazon FC,SNA4,40,pallet,100,0,USD
+LTL to Amazon FC,LGB9,40,pallet,100,0,USD
+LTL to Amazon FC,SBD2,45,pallet,150,0,USD
+LTL to Amazon FC,OAK3,85,pallet,175,0,USD
+LTL to Amazon FC,SJC7,85,pallet,175,0,USD
+LTL to Amazon FC,SMF3,85,pallet,175,0,USD
+LTL to Amazon FC,LAS1,95,pallet,180,0,USD
+LTL to Amazon FC,LAS6,95,pallet,180,0,USD
+LTL to Amazon FC,PHX3,95,pallet,180,0,USD
+LTL to Amazon FC,PHX5,95,pallet,180,0,USD
+LTL to Amazon FC,PHX7,95,pallet,180,0,USD
+LTL to Amazon FC,FTW1,180,pallet,500,0,USD
+LTL to Amazon FC,FTW2,180,pallet,500,0,USD
+LTL to Amazon FC,DFW6,200,pallet,700,0,USD
+LTL to Amazon FC,SAT1,200,pallet,700,0,USD
+LTL to Amazon FC,MDW2,210,pallet,500,0,USD
+LTL to Amazon FC,MDW6,210,pallet,500,0,USD
+LTL to Amazon FC,MDW8,210,pallet,500,0,USD
+LTL to Amazon FC,MDW9,210,pallet,500,0,USD
+LTL to Amazon FC,IND2,240,pallet,700,0,USD
+LTL to Amazon FC,SLC2,200,pallet,700,0,USD
+LTL to Amazon FC,SLC3,200,pallet,700,0,USD
+LTL to Amazon FC,CMH2,260,pallet,700,0,USD
+LTL to Amazon FC,CMH3,260,pallet,700,0,USD
+LTL to Amazon FC,CHA1,280,pallet,800,0,USD
+LTL to Amazon FC,CHA2,280,pallet,800,0,USD
+LTL to Amazon FC,PHL2,330,pallet,800,0,USD
+LTL to Amazon FC,PHL5,330,pallet,800,0,USD
+LTL to Amazon FC,PHL6,330,pallet,800,0,USD

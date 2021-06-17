@@ -1,0 +1,78 @@
+﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCap,Currency
+LGB,ONT8,750,Truck,0,0,USD
+LGB,LGB8,750,Truck,0,0,USD
+LGB,LAX9,750,Truck,0,0,USD
+LGB,XIX6,750,Truck,0,0,USD
+LGB,ONT2,750,Truck,0,0,USD
+LGB,ONT6,750,Truck,0,0,USD
+LGB,ONT9,750,Truck,0,0,USD
+LGB,SNA4,750,Truck,0,0,USD
+LGB,LGB4,750,Truck,0,0,USD
+LGB,LGB6,750,Truck,0,0,USD
+LGB,KRB1,750,Truck,0,0,USD
+LGB,OAK3,2200,Truck,0,0,USD
+LGB,SJC7,2200,Truck,0,0,USD
+LGB,SMF3,2200,Truck,0,0,USD
+LGB,SCK1,2200,Truck,0,0,USD
+LGB,PHX3,2200,Truck,0,0,USD
+LGB,PHX5,2200,Truck,0,0,USD
+LGB,PHX7,2200,Truck,0,0,USD
+LGB,GYR3,2500,Truck,0,0,USD
+LGB,LAS1,2200,Truck,0,0,USD
+LGB,LAS6,2200,Truck,0,0,USD
+LGB,RNO4,2300,Truck,0,0,USD
+LGB,FTW1,4300,Truck,0,0,USD
+LGB,DFW6,4300,Truck,0,0,USD
+LGB,DFW9,4300,Truck,0,0,USD
+LGB,SAT1,4400,Truck,0,0,USD
+LGB,MDW2,5700,Truck,0,0,USD
+Chicago,MDW2,800,Truck,0,0,USD
+Chicago,MDW6,800,Truck,0,0,USD
+Chicago,MDW9,800,Truck,0,0,USD
+Chicago,MDW7,850,Truck,0,0,USD
+Chicago,MDW8,850,Truck,0,0,USD
+Chicago,STL4,2200,Truck,0,0,USD
+Chicago,IND1,2200,Truck,0,0,USD
+Chicago,IND2,2200,Truck,0,0,USD
+Chicago,IND3,2200,Truck,0,0,USD
+Chicago,IND4,2200,Truck,0,0,USD
+Chicago,IND5,2200,Truck,0,0,USD
+Chicago,IND9,2200,Truck,0,0,USD
+Chicago,SDF8,2300,Truck,0,0,USD
+Chicago,TUL1,2500,Truck,0,0,USD
+Chicago,MKC4,2500,Truck,0,0,USD
+Chicago,MEM1,3300,Truck,0,0,USD
+Chicago,DET1,2350,Truck,0,0,USD
+Chicago,DET2,2350,Truck,0,0,USD
+Chicago,CMH1,2400,Truck,0,0,USD
+Chicago,CMH2,2400,Truck,0,0,USD
+Chicago,CVG1,2400,Truck,0,0,USD
+Chicago,CVG2,2400,Truck,0,0,USD
+Chicago,CVG3,2400,Truck,0,0,USD
+Chicago,BNA2,3400,Truck,0,0,USD
+Chicago,CLT2,3900,Truck,0,0,USD
+Portland,PDX5,600,Truck,0,0,USD
+Portland,PDX6,600,Truck,0,0,USD
+Portland,PDX7,650,Truck,0,0,USD
+Portland,PDX9,600,Truck,0,0,USD
+Portland,BFI3,800,Truck,0,0,USD
+Portland,BFI5,900,Truck,0,0,USD
+Portland,BFI7,900,Truck,0,0,USD
+Portland,SEA6,900,Truck,0,0,USD
+Portland,RNO1,1700,Truck,0,0,USD
+Portland,RNO4,1600,Truck,0,0,USD
+New Jersey,ABE4,900,Truck,0,0,USD
+New Jersey,ABE8,900,Truck,0,0,USD
+New Jersey,TEB3,900,Truck,0,0,USD
+New Jersey,TEB6,900,Truck,0,0,USD
+New Jersey,ACY2,900,Truck,0,0,USD
+New Jersey,PHL4,850,Truck,0,0,USD
+New Jersey,PHL5,850,Truck,0,0,USD
+New Jersey,PHL6,850,Truck,0,0,USD
+New Jersey,MDT1,850,Truck,0,0,USD
+New Jersey,AVP1,850,Truck,0,0,USD
+New Jersey,AVP3,850,Truck,0,0,USD
+New Jersey,BWI4,1300,Truck,0,0,USD
+New Jersey,RIC1,1300,Truck,0,0,USD
+New Jersey,CLT3,1500,Truck,0,0,USD
+New Jersey,BOS7,1500,Truck,0,0,USD

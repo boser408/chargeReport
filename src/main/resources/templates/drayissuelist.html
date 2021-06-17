@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RateCard Management</title>
+    <base th:href="@{/}">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/myquoteformCSS.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--<style type="text/css">
+
+        td{
+            text-align: center;
+            border: 1px solid;
+            border-color: #0d6aad;
+        }
+
+    </style>-->
+
+</head>
+<body>
+
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Service Provider Name</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="/logout"><i class=""></i> Logout</a></li>
+        </ul>
+
+
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="pages/chargeEntrance.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dray Reports</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <table>
+                                <tr>
+                                    <td class="drayrptCapital-tb1">Pending Dray Charges</td>
+                                    <td class="drayrptCapital-tb">
+                                        <form action="/drayrpt/download?chargeStatus=Estimated" method="post">
+                                            <button class="a" type="submit" >Download</button>
+                                        </form>
+                                    </td>
+                                    <td class="drayrptCapital-tb"><a th:href="@{/drayrpt/Add}">Add New</a></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="SP">
+                                    <thead>
+                                    <tr>
+                                        <td class="firstCol">ID</td>
+                                        <td>RefID</td>
+                                        <td>Category</td>
+                                        <td>Rate/uom</td>
+                                        <td>Qty</td>
+                                        <td>UOM</td>
+                                        <td>TotalCharge</td>
+                                        <td>Start(YYYY-MM-DD)</td>
+                                        <td>End(YYYY-MM-DD)</td>
+                                        <td>CostAdjust</td>
+                                        <td>Total</td>
+                                        <td>Note1</td>
+                                        <td>CostStatus</td>
+                                        <td>Edit</td>
+                                        <td>Delete</td>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="p:${reports}">
+                                        <td class="firstCol" id="myid" th:text="${p.id}"></td>
+                                        <td th:text="${p.refID}"></td>
+                                        <td th:text="${p.category}"></td>
+                                        <td th:text="${p.rateperuom}"></td>
+                                        <td th:text="${p.qty}"></td>
+                                        <td th:text="${p.uom}"></td>
+                                        <td th:text="${p.charge}"></td>
+                                        <td th:text="${p.startTime}"></td>
+                                        <td th:text="${p.endTime}"></td>
+                                        <td th:text="${p.costAdjust}"></td>
+                                        <td th:text="${p.total}"></td>
+                                        <td th:text="${p.note1}"></td>
+                                        <td th:text="${p.costStatus}"></td>
+                                        <td><a th:href="@{/drayrpt/Edit(myid=${p.id})}">Edit</a></td>
+                                        <td><input type="button" value="Delete" th:data-id="${p.id}" onclick="del(this.getAttribute('data-id'))"></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-heading">
+                            <table>
+                                <tr>
+                                    <td class="drayrptCapital-tb1">Charges Confirmed By LSP</td>
+                                    <td class="drayrptCapital-tb">
+                                        <form action="/drayrpt/sqldownload?chargeStatus=Confirmed" method="post">
+                                            <button class="a" type="submit" >Download</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="">
+                                    <thead>
+                                    <tr>
+                                        <td class="firstCol">ID</td>
+                                        <td>RefID</td>
+                                        <td>Category</td>
+                                        <td>Rate/uom</td>
+                                        <td>Qty</td>
+                                        <td>UOM</td>
+                                        <td>TotalCharge</td>
+                                        <td>Start(YYYY-MM-DD)</td>
+                                        <td>End(YYYY-MM-DD)</td>
+                                        <td>CostAdjust</td>
+                                        <td>Total</td>
+                                        <td>Note1</td>
+                                        <td>CostStatus</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="re:${confreports}">
+                                        <td class="firstCol" id="cfid" th:text="${re.id}"></td>
+                                        <td th:text="${re.refID}"></td>
+                                        <td th:text="${re.category}"></td>
+                                        <td th:text="${re.rateperuom}"></td>
+                                        <td th:text="${re.qty}"></td>
+                                        <td th:text="${re.uom}"></td>
+                                        <td th:text="${re.charge}"></td>
+                                        <td th:text="${re.startTime}"></td>
+                                        <td th:text="${re.endTime}"></td>
+                                        <td th:text="${re.costAdjust}"></td>
+                                        <td th:text="${re.total}"></td>
+                                        <td th:text="${re.note1}"></td>
+                                        <td th:text="${re.costStatus}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-heading">
+                            <table>
+                                <tr>
+                                    <td class="drayrptCapital-tb1">Final Charges</td>
+                                    <td class="drayrptCapital-tb">
+                                        <form action="/drayrpt/sqldownload?chargeStatus=Finalized" method="post">
+                                            <button class="a" type="submit" >Download</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" >
+                                    <thead>
+                                    <tr>
+                                        <td class="firstCol">ID</td>
+                                        <td>RefID</td>
+                                        <td>Category</td>
+                                        <td>Rate/uom</td>
+                                        <td>Qty</td>
+                                        <td>UOM</td>
+                                        <td>TotalCharge</td>
+                                        <td>Start(YYYY-MM-DD)</td>
+                                        <td>End(YYYY-MM-DD)</td>
+                                        <td>CostAdjust</td>
+                                        <td>Total</td>
+                                        <td>Note1</td>
+                                        <td>CostStatus</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="rep:${adhocFinals}">
+                                        <td class="firstCol" th:text="${rep.id}"></td>
+                                        <td th:text="${rep.refID}"></td>
+                                        <td th:text="${rep.category}"></td>
+                                        <td th:text="${rep.rateperuom}"></td>
+                                        <td th:text="${rep.qty}"></td>
+                                        <td th:text="${rep.uom}"></td>
+                                        <td th:text="${rep.charge}"></td>
+                                        <td th:text="${rep.startTime}"></td>
+                                        <td th:text="${rep.endTime}"></td>
+                                        <td th:text="${rep.costAdjust}"></td>
+                                        <td th:text="${rep.total}"></td>
+                                        <td th:text="${rep.note1}"></td>
+                                        <td th:text="${rep.costStatus}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+           <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- Page Content -->
+
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+<script type="text/javascript" th:inline="javascript">
+
+    function del(myid) {
+        const r = confirm("Delete this Row?");
+        window.location.href="/drayrpt/del?delID="+myid;
+    }
+
+</script>
+</body>
+</html>

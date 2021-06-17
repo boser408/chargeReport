@@ -1,0 +1,22 @@
+﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCap,Currency
+Normal Charge,Dray from Pier to WH,535,perCtnr,0,0,USD
+Normal Charge,Pier Pass 20GP,35,perCtnr,0,0,港口费
+Normal Charge,Pier Pass 40GP,70,perCtnr,0,0,港口费
+Normal Charge,Pier Pass 40HQ,70,perCtnr,0,0,港口费
+Normal Charge,Pier Pass 45HQ,70,perCtnr,0,0,港口费
+Standard Ad Hoc,Port congestion Oct-Jan,100,perCtnr,0,0,USD
+Standard Ad Hoc,Port Waiting Over 2hr,75,perHr,0,0,港口等候费
+Standard Ad Hoc,Delivery Waiting Over 2hr,75,perHr,0,0,仓口等候费
+Standard Ad Hoc,Pre-Pull,100,perCtnr,0,0,预提费
+Standard Ad Hoc,Chassis,35,perCtnr perDay,0,0,车架费
+Standard Ad Hoc,Yard Storage - PreDelivery,35,perCtnr perDay,0,0,送前暂存费
+Standard Ad Hoc,Yard Storage - PostDelivery,35,perCtnr perDay,0,0,送后暂存费
+Standard Ad Hoc,DOT Overnight Fee,125,perCtnr perNight,0,0,限驾过夜费
+Standard Ad Hoc,Dropoff Fee,100,perCtnr,0,0,落柜费
+Standard Ad Hoc,Dry Run,160,perCtnr,0,0,空驶费
+Standard Ad Hoc,Chassis Split,35,perCtnr,0,0,车架拆分费
+Pass Through,Pass Through Cost,,As Is,,,代收代付
+Pass Through,Demurrage,,perCtnr perDay,,,滞港费
+Pass Through,Per Diem,,perCtnr perDay,,,滞箱费
+Service,Payment Service,,,,,代收代付服务
+Service,Other Handling Fee,,,,,其他服务
