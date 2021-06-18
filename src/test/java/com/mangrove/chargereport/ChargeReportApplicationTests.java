@@ -21,18 +21,25 @@ class ChargeReportApplicationTests {
     InAndOut inAndOut=new InAndOutImp();
 
     @Test
-    void contextLoads() {
+    void emptyListTest() {
+      String testPath=dataPathPrex+"Template"+sep+"emptylist.csv";
+      List<IdName> idNameList=inAndOut.readIdNameFromCSV(testPath);
+      //inAndOut.saveIdNameToCSV(idNameList,testPath);
+      //System.out.println(inAndOut.readIdNameFromCSV(testPath).size());
+        for(IdName idName:idNameList){
+            System.out.println(idName.toString());
+        }
     }
 
     /*@Test
-    void basiaFolder() {
+    void initData() {
         String chargeTempPath=dataPathPrex+"Template"+sep+"lspChargeRates0616.csv";
         List<SimpleRateTemp> chargeRateTemp=inAndOut.readSimpleRateFromCSV(chargeTempPath);
         List<IdName> lsplist=inAndOut.readIdNameFromCSV(lsplistPath);
         List<IdName> ctnrlist=new ArrayList<>();
         List<Report> reportList=new ArrayList<>();
-        reportList.add(new Report("1"," "," ",0,0," ",
-                0," "," ",0,0," "," "));
+        *//*reportList.add(new Report("1"," "," ",0,0," ",
+                0," "," ",0,0," "," "));*//*
         for(IdName idName:lsplist){
             String lspName=idName.getName();
             String filePath=dataPathPrex+"Dray"+sep+lspName;
@@ -52,6 +59,12 @@ class ChargeReportApplicationTests {
                inAndOut.saveReportToCSV(reportList,finalReportPath);
             }
         }
+        inAndOut.saveIdNameToCSV(inAndOut.readIdNameFromCSV(dataPathPrex+"Dray"+sep
+                +"SeaSky"+sep+"ctnrlist0616.csv"),dataPathPrex+"Dray"+sep
+                +"SeaSky"+sep+"ctnrlist-SeaSky.csv");
+        inAndOut.saveReportToCSV(reportList,allApproved);
+        inAndOut.saveReportToCSV(reportList,allRejected);
+        inAndOut.saveReportToCSV(reportList,allSubmitted);
     }*/
 
 }

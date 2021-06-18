@@ -112,7 +112,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Dray Report</h1>
+                    <h1 class="page-header">Add Charge Report</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -149,17 +149,17 @@
                                     <tbody>
 
                                     <tr>
-                                        <td class="firstCol" id="myid" th:text="${id}"></td>
+                                        <td><input readonly="readonly" id="myid" th:value="${id}"></td>
                                         <td>
                                             <select id="ctnr">
                                                 <option value="">Please Select</option>
-                                                <option th:each="ctnrid:${ctnrtoseasky}"
+                                                <option th:each="ctnrid:${ctnrlist}"
                                                         th:value="${ctnrid.name}" th:text="${ctnrid.name}"
                                                         th:selected="${ctnrid.name}">
                                                 </option>
                                             </select>
                                         </td>
-                                        <td hidden><input id="hidctnr" class="normInput" name="rpt" type="text" ></td>
+                                        <td hidden><input id="hidctnr" class="normInput"  type="text" ></td>
                                         <td>
                                             <select id="type">
                                                 <option value="">Please Select</option>
@@ -169,7 +169,7 @@
                                                 </option>
                                             </select>
                                         </td>
-                                        <td hidden><input id="hidtype" class="normInput" name="rpt" type="text" value=""></td>
+                                        <td hidden><input id="hidtype" class="normInput" type="text" value=""></td>
                                         <td><input id="peruom" class="normInput" name="rpt" type="text" ></td>
                                         <td class="firstCol"><input id="qty" class="smallInput" name="rpt" type="text" ></td>
                                         <td><input class="normInput" name="rpt" type="text" id="uom" value=""></td>
@@ -180,15 +180,14 @@
                                         <td><input id="total" class="normInput" name="rpt" type="text" readonly="readonly" value=""></td>
                                         <td><input name="rpt" class="noteInput" type="text" ></td>
                                         <td>
-                                            <label>
                                             <select class="cc" id="costStatus">
                                                 <option>Estimated</option>
                                                 <option>Confirmed</option>
                                             </select>
-                                            </label>
+                                        <!--<td hidden><input id="hidstatus" class="normInput" name="rpt" type="text" value=""></td>-->
                                         </td>
-                                        <td><input type="button" value="Save" id="update"></td>
-                                        <td><a th:href="@{/drayrpt/sqlfindAll}">Discard</a></td>
+                                        <td><input type="button" value="Save" id="" onclick="f1()"></td>
+                                        <td><a th:href="@{/drayrpt/issuelist}">Discard</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -261,38 +260,48 @@
         $("#total").val(total);
     });
 
-    $("#update").click(function () {
-       var rptUpdates=[];
+    /*$("#update").click(function () {
+       let rptUpdates=[];
        let myid=$("#myid").text();
        let costStatus=$("#costStatus").val();
        let ct=$("#ctnr").val();
        $("#hidctnr").val(ct);
        let tp=$("#type").val();
        $("#hidtype").val(tp);
-       var inputArray=$("input[name='rpt']");
+       let inputArray=$("input[name='rpt']");
        inputArray.each(function () {
            rptUpdates.push($(this).val());
        })
         if(rptUpdates[0].length*rptUpdates[1].length*rptUpdates[5].length*rptUpdates[6].length*rptUpdates[10].length===0){
             alert("RefID"+", "+"Category "+", "+"TotalCharge"+", "+"Sart Time"+ ", "+"Note " +" cannot be Empty, Please Check!");
         }else {
-            $.post("/drayrpt/sqlcreate","myid="+myid+"&costStatus="+costStatus+"&rptUpdates="+rptUpdates,function (data) {
-                window.location.href="/drayrpt/sqlfindAll";
-
+            $.post("/drayrpt/saveNew","myid="+myid+"&costStatus="+costStatus+"&rptUpdates="+rptUpdates,function (data) {
+                window.location.href="/drayrpt/saveNew";
             },"text");
         }
         window.location.href="/drayrpt/sqlfindAll";
-
-    });
-
+    });*/
     function f1() {
-        var input=document.getElementsByTagName("input");
-        var rateUpdates=[];
-        for(var i=0;i<input.length;i++){
-            if("rate"===input[i].name)
+        let input=document.getElementsByTagName("input");
+        let myid=document.getElementById("myid").value;
+        let ctnrid=document.getElementById("ctnr").value;
+        let type=document.getElementById("type").value;
+        let status=document.getElementById("costStatus").value;
+        let rateUpdates=[];
+        rateUpdates.push(myid);
+        rateUpdates.push(ctnrid);
+        rateUpdates.push(type);
+        for(let i=0;i<input.length;i++){
+            if("rpt"===input[i].name)
                 rateUpdates.push(input[i].value);
         }
-        alert(rateUpdates);
+        rateUpdates.push(status);
+        if(rateUpdates[1].length*rateUpdates[2].length*rateUpdates[6].length*rateUpdates[7].length*rateUpdates[11].length===0){
+            alert("RefID"+", "+"Category "+", "+"Charge"+", "+"Start Time"+ ", "+"Note " +" cannot be Empty, Please Check!");
+        }else {
+            window.location.href="/drayrpt/saveNew?rptUpdates="+rateUpdates;
+        }
+        //alert(rateUpdates);
     }
 
 </script>

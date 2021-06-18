@@ -97,13 +97,12 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab">Pending</a>
+                                <li class="active"><a href="#home" data-toggle="tab">Submitted</a>
                                 </li>
-                                <li><a href="#profile" data-toggle="tab">Submitted</a>
+                                <li><a href="#profile" data-toggle="tab">Approved</a>
                                 </li>
-                                <li><a href="#messages" data-toggle="tab">Approved</a>
+                                <li><a href="#messages" data-toggle="tab">Rejected</a>
                                 </li>
-
                             </ul>
 
                             <!-- Tab panes -->
@@ -112,7 +111,7 @@
                                     <div class="panel-heading">
                                         <table>
                                             <tr>
-                                                <td class="drayrptCapital-tb1">Pending Dray Charges</td>
+                                                <td class="drayrptCapital-tb1">LSP Submitted Charges</td>
                                                 <td class="drayrptCapital-tb">
                                                     <form action="/drayrpt/download?chargeStatus=Estimated" method="post">
                                                         <button class="a" type="submit" >Download</button>
@@ -140,13 +139,13 @@
                                                     <td>Total</td>
                                                     <td>Note1</td>
                                                     <td>CostStatus</td>
-                                                    <td>Edit</td>
-                                                    <td>Delete</td>
+                                                    <td>Reject</td>
+                                                    <td>Approve</td>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="p:${reports}">
+                                                <tr th:each="p:${submitted}">
                                                     <td class="firstCol" id="myid" th:text="${p.id}"></td>
                                                     <td th:text="${p.refID}"></td>
                                                     <td th:text="${p.category}"></td>
@@ -160,8 +159,8 @@
                                                     <td th:text="${p.total}"></td>
                                                     <td th:text="${p.note1}"></td>
                                                     <td th:text="${p.costStatus}"></td>
-                                                    <td><a th:href="@{/drayrpt/Edit(myid=${p.id})}">Edit</a></td>
-                                                    <td><input type="button" value="Delete" th:data-id="${p.id}" onclick="del(this.getAttribute('data-id'))"></td>
+                                                    <td><input type="button" value="Reject" th:data-id="${p.id}" onclick="rej(this.getAttribute('data-id'))"></td>
+                                                    <td><input type="button" value="Approve" th:data-id="${p.id}" onclick="apr(this.getAttribute('data-id'))"></td>
 
                                                 </tr>
                                                 </tbody>
@@ -173,7 +172,7 @@
                                     <div class="panel-heading">
                                         <table>
                                             <tr>
-                                                <td class="drayrptCapital-tb1">Charges Confirmed By LSP</td>
+                                                <td class="drayrptCapital-tb1">Approved Charges</td>
                                                 <td class="drayrptCapital-tb">
                                                     <form action="/drayrpt/sqldownload?chargeStatus=Confirmed" method="post">
                                                         <button class="a" type="submit" >Download</button>
@@ -204,7 +203,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="re:${confreports}">
+                                                <tr th:each="re:${approved}">
                                                     <td class="firstCol" id="cfid" th:text="${re.id}"></td>
                                                     <td th:text="${re.refID}"></td>
                                                     <td th:text="${re.category}"></td>
@@ -228,7 +227,7 @@
                                     <div class="panel-heading">
                                         <table>
                                             <tr>
-                                                <td class="drayrptCapital-tb1">Final Charges</td>
+                                                <td class="drayrptCapital-tb1">Rejected Charges</td>
                                                 <td class="drayrptCapital-tb">
                                                     <form action="/drayrpt/sqldownload?chargeStatus=Finalized" method="post">
                                                         <button class="a" type="submit" >Download</button>
@@ -259,7 +258,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="rep:${adhocFinals}">
+                                                <tr th:each="rep:${rejected}">
                                                     <td class="firstCol" th:text="${rep.id}"></td>
                                                     <td th:text="${rep.refID}"></td>
                                                     <td th:text="${rep.category}"></td>
@@ -307,10 +306,21 @@
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 <script type="text/javascript" th:inline="javascript">
-
-    function del(myid) {
-        const r = confirm("Delete this Row?");
-        window.location.href="/drayrpt/del?delID="+myid;
+    function rej(myid) {
+        let r=confirm("Reject this Charge ?");
+        if(r){
+           window.location.href = "/op/rejcharge?myid="+myid;
+        }else{
+           alert("Rejection Cancelled");
+        }
+    }
+    function apr(myid) {
+        let r=confirm("Approve this Charge ?");
+        if(r){
+          window.location.href = "/op/aprcharge?myid="+myid;
+        }else{
+          alert("Approval Cancelled");
+        }
     }
 
 </script>

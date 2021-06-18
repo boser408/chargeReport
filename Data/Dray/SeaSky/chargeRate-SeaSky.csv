@@ -1,49 +1,49 @@
 ﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCapCurrency
-Drayage-Standard,Dray from Pier to WH,0.0,per Ctnr,0.0,0.0,鎷栬溅璐�
-Drayage-Pass Through,LA/LB Pier Pass - 20GP,0.0,per Ctnr,0.0,0.0,娲涙潐鐭舵腐鍙ｈ垂锛圱EU锛�
-Drayage-Pass Through,LA/LB Pier Pass - 40/45,0.0,per Ctnr,0.0,0.0,娲涙潐鐭舵腐鍙ｈ垂锛團EU锛�
-Drayage-Pass Through,OAK Gate Fee,0.0,per Ctnr,0.0,0.0,濂ュ厠鍏版腐鍙ｈ垂
-Drayage-Pass Through,Demurrage,0.0,per Ctnr,0.0,0.0,婊炴腐璐�
-Drayage-Pass Through,Per Diem,0.0,per Ctnr,0.0,0.0,婊炵璐�
-Drayage-Std Ad Hoc,Port Congestion,0.0,per Ctnr,0.0,0.0,娓彛鎷ュ牭璐�
-Drayage-Std Ad Hoc,Port Waiting Over 2hr,0.0,per Hr,0.0,0.0,娓彛绛夊�欒垂
-Drayage-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,鍗告煖绛夊�欒垂
-Drayage-Std Ad Hoc,Pre-Pull,0.0,per Ctnr,0.0,0.0,棰勬彁璐�
-Drayage-Std Ad Hoc,Chassis,0.0,per Ctnr per Day,0.0,0.0,鏍囧噯杞︽灦璐�
-Drayage-Std Ad Hoc,Yard Storage,0.0,per Ctnr per Night,0.0,0.0,鏆傚瓨璐�
-Drayage-Std Ad Hoc,Unplanned Overnight Fee,0.0,per Ctnr per Night,0.0,0.0,璁″垝澶栬繃澶滆垂
-Drayage-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Ctnr,0.0,0.0,鍛ㄦ湯閫佹煖闄勫姞璐�
-Drayage-Std Ad Hoc,Dropoff Fee,0.0,per Ctnr,0.0,0.0,钀芥煖璐�
-Drayage-Std Ad Hoc,Dry Run,0.0,per Ctnr,0.0,0.0,绌洪┒璐�
-Drayage-Std Ad Hoc,Chassis Split,0.0,per Ctnr,0.0,0.0,杞︽灦鎷嗗垎璐�
-Drayage-Std Ad Hoc,Triaxile Chassis,0.0,per Ctnr,0.0,0.0,涓夎酱杞︽灦璐�
-Drayage-Std Ad Hoc,Overweight Charge,0.0,per Ctnr,0.0,0.0,瓒呴噸璐�
-Drayage-Std Ad Hoc,Scale Ticket,0.0,per Ctnr,0.0,0.0,绉伴噸璐�
-Drayage-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,鏌ラ獙鎷栬溅璐�
-Drayage-Std Ad Hoc,Bobtail Fee,0.0,per Ctnr,0.0,0.0,钀芥煖杩旂▼璐�
-Drayage-Std Ad Hoc,Payment Service,0.0,per Ctnr,0.0,0.0,浠ｄ粯鎵嬬画璐�
-Drayage-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,澶氱偣娲鹃�佽垂
-Customs-Standard,Customs Entry Fee,0.0,per B/L,0.0,0.0,鐢虫姤璐�
-Customs-Standard,ISF/AMS Fee,0.0,per B/L,0.0,0.0,ISF/AMS璐�
-Customs-Std Ad Hoc,FDA/OGA Filing Fee,0.0,per B/L,0.0,0.0,鍏朵粬鐢虫姤璐�
-Customs-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,鏌ラ獙鎷栬溅璐�
-Customs-Std Ad Hoc,Inspection Handling Fee,0.0,per B/L,0.0,0.0,鏌ラ獙鏈嶅姟璐�
-Customs-Std Ad Hoc,Payment Service,0.0,per B/L,0.0,0.0,浠ｄ粯鎵嬬画璐�
-Customs-Pass Through,Duty Payment,0.0,per B/L,0.0,0.0,绋庨噾
-Customs-Pass Through,Single Bond,0.0,per B/L,0.0,0.0,鍗曟淇濊瘉閲�
-Customs-Pass Through,Customs Bond,0.0,per B/L,0.0,0.0,娴峰叧淇濊瘉閲�
-Customs-Pass Through,Annual Bond,0.0,per B/L,0.0,0.0,鍏ㄥ勾淇濊瘉閲�
-Transload-Standard,Devanning,0.0,per Ctnr,0.0,0.0,鎺忕璐�
-Transload-Standard,Palletization,0.0,per Pallet,0.0,0.0,鎵撴墭璐�
-Transload-Standard,Pallet Loading,0.0,per Pallet,0.0,0.0,鎵樼洏瑁呰溅璐�
-Transload-Standard,Order Processing,0.0,per Order,0.0,0.0,璁㈠崟澶勭悊璐�
-Transload-Standard,Outbound Order,0.0,per BOL,0.0,0.0,鍙戣揣鍒跺崟璐�
-Transload-Std Ad Hoc,Sort Fee (Extra Carton),0.0,per Carton,0.0,0.0,瓒呯娓呯偣璐�
-Transload-Std Ad Hoc,Pallet Seal,0.0,per Truck,0.0,0.0,鏁磋溅閾呭皝璐�
-Transload-Std Ad Hoc,Pallet Storage,0.0,per Pallet per Day,0.0,0.0,鎵樼洏鏆傚瓨璐�
-Transload-Std Ad Hoc,Pickup Handling Fee,0.0,per Pallet,0.0,0.0,鎻愯揣绠＄悊璐�
-Trucking-Standard,FTL Delivery,0.0,per Truck,0.0,0.0,鏁磋溅娲鹃�佽垂
-Trucking-Standard,LTL Delivery,0.0,per Pallet,0.0,0.0,闆舵媴娲鹃�佽垂
-Trucking-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,鍗歌揣绛夊�欒垂
-Trucking-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,澶氱偣娲鹃�佽垂
-Trucking-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Truck,0.0,0.0,鍛ㄦ湯閫佹煖闄勫姞璐�
+Drayage-Standard,Dray from Pier to WH,0.0,per Ctnr,0.0,0.0,拖车费
+Drayage-Pass Through,LA/LB Pier Pass - 20GP,0.0,per Ctnr,0.0,0.0,洛杉矶港口费（TEU）
+Drayage-Pass Through,LA/LB Pier Pass - 40/45,0.0,per Ctnr,0.0,0.0,洛杉矶港口费（FEU）
+Drayage-Pass Through,OAK Gate Fee,0.0,per Ctnr,0.0,0.0,奥克兰港口费
+Drayage-Pass Through,Demurrage,0.0,per Ctnr,0.0,0.0,滞港费
+Drayage-Pass Through,Per Diem,0.0,per Ctnr,0.0,0.0,滞箱费
+Drayage-Std Ad Hoc,Port Congestion,0.0,per Ctnr,0.0,0.0,港口拥堵费
+Drayage-Std Ad Hoc,Port Waiting Over 2hr,0.0,per Hr,0.0,0.0,港口等候费
+Drayage-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,卸柜等候费
+Drayage-Std Ad Hoc,Pre-Pull,0.0,per Ctnr,0.0,0.0,预提费
+Drayage-Std Ad Hoc,Chassis,0.0,per Ctnr per Day,0.0,0.0,标准车架费
+Drayage-Std Ad Hoc,Yard Storage,0.0,per Ctnr per Night,0.0,0.0,暂存费
+Drayage-Std Ad Hoc,Unplanned Overnight Fee,0.0,per Ctnr per Night,0.0,0.0,计划外过夜费
+Drayage-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Ctnr,0.0,0.0,周末送柜附加费
+Drayage-Std Ad Hoc,Dropoff Fee,0.0,per Ctnr,0.0,0.0,落柜费
+Drayage-Std Ad Hoc,Dry Run,0.0,per Ctnr,0.0,0.0,空驶费
+Drayage-Std Ad Hoc,Chassis Split,0.0,per Ctnr,0.0,0.0,车架拆分费
+Drayage-Std Ad Hoc,Triaxile Chassis,0.0,per Ctnr,0.0,0.0,三轴车架费
+Drayage-Std Ad Hoc,Overweight Charge,0.0,per Ctnr,0.0,0.0,超重费
+Drayage-Std Ad Hoc,Scale Ticket,0.0,per Ctnr,0.0,0.0,称重费
+Drayage-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,查验拖车费
+Drayage-Std Ad Hoc,Bobtail Fee,0.0,per Ctnr,0.0,0.0,落柜返程费
+Drayage-Std Ad Hoc,Payment Service,0.0,per Ctnr,0.0,0.0,代付手续费
+Drayage-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,多点派送费
+Customs-Standard,Customs Entry Fee,0.0,per B/L,0.0,0.0,申报费
+Customs-Standard,ISF/AMS Fee,0.0,per B/L,0.0,0.0,ISF/AMS费
+Customs-Std Ad Hoc,FDA/OGA Filing Fee,0.0,per B/L,0.0,0.0,其他申报费
+Customs-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,查验拖车费
+Customs-Std Ad Hoc,Inspection Handling Fee,0.0,per B/L,0.0,0.0,查验服务费
+Customs-Std Ad Hoc,Payment Service,0.0,per B/L,0.0,0.0,代付手续费
+Customs-Pass Through,Duty Payment,0.0,per B/L,0.0,0.0,税金
+Customs-Pass Through,Single Bond,0.0,per B/L,0.0,0.0,单次保证金
+Customs-Pass Through,Customs Bond,0.0,per B/L,0.0,0.0,海关保证金
+Customs-Pass Through,Annual Bond,0.0,per B/L,0.0,0.0,全年保证金
+Transload-Standard,Devanning,0.0,per Ctnr,0.0,0.0,掏箱费
+Transload-Standard,Palletization,0.0,per Pallet,0.0,0.0,打托费
+Transload-Standard,Pallet Loading,0.0,per Pallet,0.0,0.0,托盘装车费
+Transload-Standard,Order Processing,0.0,per Order,0.0,0.0,订单处理费
+Transload-Standard,Outbound Order,0.0,per BOL,0.0,0.0,发货制单费
+Transload-Std Ad Hoc,Sort Fee (Extra Carton),0.0,per Carton,0.0,0.0,超箱清点费
+Transload-Std Ad Hoc,Pallet Seal,0.0,per Truck,0.0,0.0,整车铅封费
+Transload-Std Ad Hoc,Pallet Storage,0.0,per Pallet per Day,0.0,0.0,托盘暂存费
+Transload-Std Ad Hoc,Pickup Handling Fee,0.0,per Pallet,0.0,0.0,提货管理费
+Trucking-Standard,FTL Delivery,0.0,per Truck,0.0,0.0,整车派送费
+Trucking-Standard,LTL Delivery,0.0,per Pallet,0.0,0.0,零担派送费
+Trucking-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,卸货等候费
+Trucking-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,多点派送费
+Trucking-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Truck,0.0,0.0,周末送柜附加费

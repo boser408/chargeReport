@@ -26,105 +26,171 @@ import static com.mangrove.chargereport.genManage.CardConstant.*;
 public class ReportController {
 
     InAndOut inAndOut=new InAndOutImp();
-
-    public String getctnrlistPath(){
-        String lspName=SecurityContextHolder.getContext().getAuthentication().getName();
+    public String getLspName(){
+      return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+    public String getctnrlistPath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"ctnrlist-"+lspName+".csv";
     }
-    public String getChargePath(){
-        String lspName=SecurityContextHolder.getContext().getAuthentication().getName();
+    public String getChargePath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"chargeRate-"+lspName+".csv";
     }
-    public String getPendingPath(){
-        String lspName=SecurityContextHolder.getContext().getAuthentication().getName();
+    public String getPendingPath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"pending-"+lspName+".csv";
     }
-    public String getSubmitPath(){
-        String lspName=SecurityContextHolder.getContext().getAuthentication().getName();
+    public String getSubmitPath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"submitted-"+lspName+".csv";
     }
-    public String getFinalPaht(){
-        String lspName=SecurityContextHolder.getContext().getAuthentication().getName();
+    public String getFinalPath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"approved-"+lspName+".csv";
+    }
+
+    @RequestMapping("/drayrpt/ctnrlist")
+    public String ctnrlist(Model model){
+        model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath(getLspName())));
+        return "drayctnrlist";
     }
     @RequestMapping("/drayrpt/issuelist")
     public String issuelist(Model model){
-        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath()));
-        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath()));
-        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPaht()));
+        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
+        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
+        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
         return "drayissuelist";
     }
 
     @RequestMapping("/drayrpt/del")
     public String drayrptDel(@RequestParam("delID") String delID,Model model){
-        List<Report> reportList=inAndOut.readReportFromCSV(getPendingPath());
+        List<Report> reportList=inAndOut.readReportFromCSV(getPendingPath(getLspName()));
         reportList.removeIf(report -> report.getId().equals(delID));
-        inAndOut.saveReportToCSV(reportList,getPendingPath());
-        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath()));
-        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath()));
-        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPaht()));
+        inAndOut.saveReportToCSV(reportList,getPendingPath(getLspName()));
+        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
+        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
+        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
         return "drayissuelist";
     }
 
     @RequestMapping("/drayrpt/Edit")
     public String drayreportEdit(@RequestParam("myid")String myid, Model model){
-        List<Report> reportList=inAndOut.readReportFromCSV(getPendingPath());
+        List<Report> reportList=inAndOut.readReportFromCSV(getPendingPath(getLspName()));
         for (Report report:reportList){
             if(report.getId().equals(myid)){
                 model.addAttribute("report",report);
                 break;
             }
         }
-        model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath()));
-        model.addAttribute("typelist",inAndOut.readSimpleRateFromCSV(getChargePath()));
+        model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath(getLspName())));
+        model.addAttribute("typelist",inAndOut.readSimpleRateFromCSV(getChargePath(getLspName())));
         return "drayreportEdit";
     }
 
     @RequestMapping("/drayrpt/Add")
     public String drayreportAdd(Model model){
-        File file=new File(getPendingPath());
-        if(file.exists()){
-            model.addAttribute("id",inAndOut.readReportFromCSV(getPendingPath()).size()+1);
-        }else {
-            model.addAttribute("id","1");
-        }
+        int allRecords=inAndOut.readReportFromCSV(getPendingPath(getLspName())).size()
+                +inAndOut.readReportFromCSV(getSubmitPath(getLspName())).size()
+                +inAndOut.readReportFromCSV(getFinalPath(getLspName())).size()+1;
+        model.addAttribute("id",allRecords);
+        model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath(getLspName())));
+        model.addAttribute("typelist",inAndOut.readSimpleRateFromCSV(getChargePath(getLspName())));
         return "drayreportAdd";
     }
 
-    @ResponseBody
     @RequestMapping("/drayrpt/saveUpdate")
-    public String drayrptUpdate(@RequestParam("myid")String myid,
-                                @RequestParam("costStatus")String costStatus,
-                                @RequestParam("rptUpdates") String[] rptUpdates){
-        if(costStatus.equals("Estimated")){
-            changeRpt(myid,getPendingPath(),rptUpdates,costStatus);
+    public String drayrptUpdate(@RequestParam("rptUpdates") String[] rptUpdates,Model model){
+        Report report=createNewRpt(rptUpdates);
+        if(rptUpdates[12].equals("Estimated")){
+            changeRpt(getPendingPath(getLspName()),rptUpdates);
         }else {
-            addNewRpt(myid,getSubmitPath(),rptUpdates,costStatus);
-            delById(myid,getPendingPath());
+            addNewRpt(getSubmitPath(getLspName()),report);
+            Report toAllsubmit=new Report(report);
+            toAllsubmit.setId(getLspName()+"-"+report.getId());
+            addNewRpt(allSubmitted,toAllsubmit);
         }
-        return "Update Successful!";
+        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
+        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
+        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
+        return "drayissuelist";
     }
 
-    @ResponseBody
     @RequestMapping("/drayrpt/saveNew")
-    public String drayrptAddnew(@RequestParam("myid")String myid,
-                                @RequestParam("costStatus")String costStatus,
-                                @RequestParam("rptUpdates") String[] rptUpdates){
-        if(costStatus.equals("Estimated")){
-            addNewRpt(myid,getPendingPath(),rptUpdates,costStatus);
+    public String drayrptAddnew(@RequestParam("rptUpdates") String[] rptUpdates,Model model){
+        Report report=createNewRpt(rptUpdates);
+        if(rptUpdates[12].equals("Estimated")){
+            addNewRpt(getPendingPath(getLspName()),report);
         }else {
-            addNewRpt(myid,getSubmitPath(),rptUpdates,costStatus);
+            addNewRpt(getSubmitPath(getLspName()),report);
+            Report toAllsubmit=new Report(report);
+            toAllsubmit.setId(getLspName()+"-"+report.getId());
+            addNewRpt(allSubmitted,report);
         }
-        return "New Record Saved!";
+        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
+        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
+        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
+        return "drayissuelist";
     }
 
-    /*@ResponseBody
-    @RequestMapping("/drayrpt/del")
-    public String drayrptdel(@RequestParam("myid")String myid){
-        delById(myid,getPendingPath());
-        return "Update Successful!";
-    }*/
+    @RequestMapping("/op/getChargelist")
+    public String opdraycharges(Model model){
+        model.addAttribute("submitted",inAndOut.readReportFromCSV(allSubmitted));
+        model.addAttribute("approved",inAndOut.readReportFromCSV(allApproved));
+        model.addAttribute("rejected",inAndOut.readReportFromCSV(allRejected));
+        return "opChargelist";
+    }
 
+    @RequestMapping("/op/rejcharge")
+    public String oprejcharges(@RequestParam("myid")String myid,Model model){
+        String lspName=myid.split("-")[0];
+        String id=myid.split("-")[1];
+        List<Report> submittedCharges=inAndOut.readReportFromCSV(allSubmitted);
+        List<Report> rejectedCharges=inAndOut.readReportFromCSV(allRejected);
+        for (Report report:submittedCharges){
+            if (report.getId().equals(myid)){
+                rejectedCharges.add(report);
+                inAndOut.saveReportToCSV(rejectedCharges,allRejected);
+
+                Report rejectedReport=new Report(report);
+                rejectedReport.setId(id);
+                rejectedReport.setCostStatus("rejected");
+                List<Report> lspPendings=inAndOut.readReportFromCSV(getPendingPath(lspName));
+                lspPendings.add(rejectedReport);
+                inAndOut.saveReportToCSV(lspPendings,getPendingPath(lspName));
+                submittedCharges.remove(report);
+                inAndOut.saveReportToCSV(submittedCharges,allSubmitted);
+                break;
+            }
+        }
+        rmSubmittedReport(id,lspName);
+        model.addAttribute("submitted",inAndOut.readReportFromCSV(allSubmitted));
+        model.addAttribute("approved",inAndOut.readReportFromCSV(allApproved));
+        model.addAttribute("rejected",inAndOut.readReportFromCSV(allRejected));
+        return "opChargelist";
+    }
+    @RequestMapping("/op/aprcharge")
+    public String opaprcharges(@RequestParam("myid")String myid,Model model){
+        String lspName=myid.split("-")[0];
+        String id=myid.split("-")[1];
+        List<Report> submittedCharges=inAndOut.readReportFromCSV(allSubmitted);
+        List<Report> approvedCharges=inAndOut.readReportFromCSV(allApproved);
+        for (Report report:submittedCharges){
+            if (report.getId().equals(myid)){
+                approvedCharges.add(report);
+                inAndOut.saveReportToCSV(approvedCharges,allApproved);
+
+                Report approvedReport=new Report(report);
+                approvedReport.setId(id);
+                approvedReport.setCostStatus("appoved");
+                List<Report> lspApproves=inAndOut.readReportFromCSV(getFinalPath(lspName));
+                lspApproves.add(approvedReport);
+                inAndOut.saveReportToCSV(lspApproves,getFinalPath(lspName));
+
+                break;
+            }
+        }
+        rmSubmittedReport(id,lspName);
+        model.addAttribute("submitted",inAndOut.readReportFromCSV(allSubmitted));
+        model.addAttribute("approved",inAndOut.readReportFromCSV(allApproved));
+        model.addAttribute("rejected",inAndOut.readReportFromCSV(allRejected));
+        return "opChargelist";
+    }
     @RequestMapping("/drayrpt/download")
     public void fileDownLoad(@RequestParam("chargeStatus") String chargeStatus,
                              HttpServletRequest request,
@@ -132,10 +198,10 @@ public class ReportController {
         String downloadPath;
         String downloadName;
         if(chargeStatus.equals("Estimated")){
-            downloadPath=getPendingPath();
+            downloadPath=getPendingPath(getLspName());
             downloadName="EstimatedDrayCharge.csv";
         }else {
-            downloadPath=getSubmitPath();
+            downloadPath=getSubmitPath(getLspName());
             downloadName="ConfirmedDrayCharge.csv";
         }
         try {
@@ -155,53 +221,45 @@ public class ReportController {
             e.printStackTrace();
         }
     }
-    public void changeRpt(String myid,String filePath,String[] rptUpdates,String costStatus){
+    public void changeRpt(String filePath,String[] rptUpdates){
         List<Report> reportList=inAndOut.readReportFromCSV(filePath);
-        int n=Integer.parseInt(myid)-1;
-        reportList.get(n).setId(myid);
-        reportList.get(n).setRefID(rptUpdates[0]);
-        reportList.get(n).setCategory(rptUpdates[1]);
-        reportList.get(n).setRateperuom(Float.parseFloat(rptUpdates[2].isEmpty()?"0":rptUpdates[2]));
-        reportList.get(n).setQty(Float.parseFloat(rptUpdates[3].isEmpty()?"0":rptUpdates[3]));
-        reportList.get(n).setUom(rptUpdates[4]);
-        reportList.get(n).setCharge(Float.parseFloat(rptUpdates[5].isEmpty()?"0":rptUpdates[5]));
-        reportList.get(n).setStartTime(rptUpdates[6]);
-        reportList.get(n).setEndTime(rptUpdates[7]);
-        reportList.get(n).setCostAdjust(Float.parseFloat(rptUpdates[8].isEmpty()?"0":rptUpdates[8]));
-        reportList.get(n).setTotal(Float.parseFloat(rptUpdates[9].isEmpty()?"0":rptUpdates[9]));
-        reportList.get(n).setNote1(rptUpdates[10]);
-        reportList.get(n).setCostStatus(costStatus);
-        inAndOut.saveReportToCSV(reportList,filePath);
-    }
-
-    public void addNewRpt(String myid,String filePath,String[] rptUpdates,String costStatus){
-        List<Report> reportList=new ArrayList<>();
-        Report report=new Report(myid,rptUpdates[0],rptUpdates[1],
-                Float.parseFloat(rptUpdates[2].isEmpty()?"0":rptUpdates[2]),
-                Float.parseFloat(rptUpdates[3].isEmpty()?"0":rptUpdates[3]),
-                rptUpdates[4],Float.parseFloat(rptUpdates[5].isEmpty()?"0":rptUpdates[5]),rptUpdates[6],
-                rptUpdates[7],Float.parseFloat(rptUpdates[8].isEmpty()?"0":rptUpdates[8]),
-                Float.parseFloat(rptUpdates[9].isEmpty()?"0":rptUpdates[9]),rptUpdates[10],costStatus);
-        if(new File(filePath).exists()){reportList=inAndOut.readReportFromCSV(filePath);}
-        reportList.add(report);
-        for(int t=0;t<=reportList.size()-1;t++){
-            reportList.get(t).setId(Integer.toString(t+1));
-        }
-        inAndOut.saveReportToCSV(reportList,filePath);
-    }
-    public void delById(String myid,String filePath){
-        List<Report> reportList=inAndOut.readReportFromCSV(filePath);
-        int n=Integer.parseInt(myid);
-        if(reportList.size()==1){
-            reportList=new ArrayList<>();
-        }else if(n==reportList.size()){
-            reportList.remove(n-1);
-        }else {
-            reportList.remove(n-1);
-            for(int t=0;t<=reportList.size()-1;t++){
-                reportList.get(t).setId(Integer.toString(t+1));
+        int n;
+        for(n=0;n<reportList.size();n++){
+            if(reportList.get(n).getId().equals(rptUpdates[0])){
+                reportList.get(n).setId(rptUpdates[0]);
+                reportList.get(n).setRefID(rptUpdates[1]);
+                reportList.get(n).setCategory(rptUpdates[2]);
+                reportList.get(n).setRateperuom(Float.parseFloat(rptUpdates[3].isEmpty()?"0":rptUpdates[3]));
+                reportList.get(n).setQty(Float.parseFloat(rptUpdates[4].isEmpty()?"0":rptUpdates[4]));
+                reportList.get(n).setUom(rptUpdates[5]);
+                reportList.get(n).setCharge(Float.parseFloat(rptUpdates[6].isEmpty()?"0":rptUpdates[6]));
+                reportList.get(n).setStartTime(rptUpdates[7]);
+                reportList.get(n).setEndTime(rptUpdates[8]);
+                reportList.get(n).setCostAdjust(Float.parseFloat(rptUpdates[9].isEmpty()?"0":rptUpdates[9]));
+                reportList.get(n).setTotal(Float.parseFloat(rptUpdates[10].isEmpty()?"0":rptUpdates[10]));
+                reportList.get(n).setNote1(rptUpdates[11]);
+                reportList.get(n).setCostStatus(rptUpdates[12]);
+                break;
             }
         }
         inAndOut.saveReportToCSV(reportList,filePath);
+    }
+    public Report createNewRpt(String[] rptUpdates){
+        return new Report(rptUpdates[0],rptUpdates[1],rptUpdates[2],
+                Float.parseFloat(rptUpdates[3].isEmpty()?"0":rptUpdates[3]),
+                Float.parseFloat(rptUpdates[4].isEmpty()?"0":rptUpdates[4]),
+                rptUpdates[5],Float.parseFloat(rptUpdates[6].isEmpty()?"0":rptUpdates[6]),rptUpdates[7],
+                rptUpdates[8],Float.parseFloat(rptUpdates[9].isEmpty()?"0":rptUpdates[9]),
+                Float.parseFloat(rptUpdates[10].isEmpty()?"0":rptUpdates[10]),rptUpdates[11],rptUpdates[12]);
+    }
+    public void addNewRpt(String filePath,Report report){
+        List<Report> reportList=inAndOut.readReportFromCSV(filePath);
+        reportList.add(report);
+        inAndOut.saveReportToCSV(reportList,filePath);
+    }
+    public void rmSubmittedReport(String id,String lspName){
+        List<Report> lspSubmitCharges=inAndOut.readReportFromCSV(getSubmitPath(lspName));
+        lspSubmitCharges.removeIf(report -> report.getId().equals(id));
+        inAndOut.saveReportToCSV(lspSubmitCharges,getSubmitPath(lspName));
     }
 }

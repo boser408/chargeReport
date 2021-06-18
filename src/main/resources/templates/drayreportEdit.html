@@ -151,18 +151,17 @@
                                     <tbody>
 
                                     <tr >
-                                        <td class="firstCol" id="myid" th:text="${report.id}"></td>
+                                        <td><input readonly="readonly" id="myid" th:value="${report.id}"></td>
                                         <td id="hidstart" hidden="hidden">
                                             <select id="ctnr">
                                                 <option value="">Please Select</option>
                                                 <option th:selected="${report.refID eq ctnrid.name}"
                                                         th:each="ctnrid:${ctnrlist}"
-                                                        th:value="${ctnrid.name}" th:text="${ctnrid.name}"
-                                                        >
+                                                        th:value="${ctnrid.name}" th:text="${ctnrid.name}">
                                                 </option>
                                             </select>
                                         </td>
-                                        <td id="hidend"><input id="hidctnr" class="normInput" name="rpt" type="text" th:value="${report.refID}"></td>
+                                        <td id="hidend"><input id="hidctnr" class="normInput" name="" type="text" th:value="${report.refID}"></td>
                                         <td id="hidinopen" hidden="hidden">
                                             <select id="type">
                                                <option value="">Please Select</option>
@@ -171,7 +170,7 @@
                                                </option>
                                             </select>
                                         </td>
-                                        <td id="hidwhenclick"><input id="hidtype" class="mediuInput" name="rpt" type="text" th:value="${report.category}"></td>
+                                        <td id="hidwhenclick"><input id="hidtype" class="mediuInput" name="" type="text" th:value="${report.category}"></td>
                                         <td><input id="peruom" class="normInput" name="rpt" type="text" th:value="${report.rateperuom}"></td>
                                         <td class="firstCol"><input id="qty" class="smallInput" name="rpt" type="text" th:value="${report.qty}"></td>
                                         <td><input class="normInput" name="rpt" type="text" id="uom" th:value="${report.uom}"></td>
@@ -189,8 +188,8 @@
                                             </select>
                                             </label>
                                         </td>
-                                        <td><input type="button" value="SaveEdit" id="update"></td>
-                                        <td><a th:href="@{/drayrpt/sqlfindAll}">Discard</a></td>
+                                        <td><input type="button" value="SaveEdit" id="" onclick="f1()"></td>
+                                        <td><a th:href="@{/drayrpt/issuelist}">Discard</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -275,7 +274,7 @@
       let total=(Math.round((parseFloat(ajs)+parseFloat(charge))*100))/100;
       $("#total").val(total);
   })
-    $("#update").click(function () {
+    /*$("#update").click(function () {
         var rptUpdates=[];
         let myid=$("#myid").text();
         let costStatus=$("#costStatus").val();
@@ -293,22 +292,35 @@
         if(rptUpdates[0].length*rptUpdates[1].length*rptUpdates[5].length*rptUpdates[6].length*rptUpdates[10].length===0){
             alert("RefID"+", "+"Category "+", "+"TotalCharge"+", "+"Sart Time"+ ", "+"Note " +" cannot be Empty, Please Check!");
         }else {
-            $.post("/drayrpt/sqlupdate","myid="+myid+"&costStatus="+costStatus+"&rptUpdates="+rptUpdates,function (data) {
-                window.location.href="/drayrpt/sqlfindAll";
+            $.post("/drayrpt/issuelist","myid="+myid+"&costStatus="+costStatus+"&rptUpdates="+rptUpdates,function (data) {
+                window.location.href="/drayrpt/issuelist";
             },"text");
         }
-        window.location.href="/drayrpt/sqlfindAll";
-    })
+        window.location.href="/drayrpt/issuelist";
+    })*/
 
-    function f1() {
-        let input=document.getElementsByTagName("input");
-        let rateUpdates=[];
-        for(let i=0;i<input.length;i++){
-            if("rate"===input[i].name)
-                rateUpdates.push(input[i].value);
-        }
-        alert(rateUpdates);
-    }
+  function f1() {
+      let input=document.getElementsByTagName("input");
+      let myid=document.getElementById("myid").value;
+      let ctnrid=document.getElementById("ctnr").value;
+      let type=document.getElementById("type").value;
+      let status=document.getElementById("costStatus").value;
+      let rateUpdates=[];
+      rateUpdates.push(myid);
+      rateUpdates.push(ctnrid);
+      rateUpdates.push(type);
+      for(let i=0;i<input.length;i++){
+          if("rpt"===input[i].name)
+              rateUpdates.push(input[i].value);
+      }
+      rateUpdates.push(status);
+      if(rateUpdates[1].length*rateUpdates[2].length*rateUpdates[6].length*rateUpdates[7].length*rateUpdates[11].length===0){
+          alert("RefID"+", "+"Category "+", "+"Charge"+", "+"Start Time"+ ", "+"Note " +" cannot be Empty, Please Check!");
+      }else {
+          window.location.href="/drayrpt/saveUpdate?rptUpdates="+rateUpdates;
+      }
+      //alert(rateUpdates);
+  }
 
 </script>
 

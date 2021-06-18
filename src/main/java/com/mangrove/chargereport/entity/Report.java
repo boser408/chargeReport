@@ -18,6 +18,22 @@ public class Report {
     public Report() {
     }
 
+    public Report(Report report) {
+        this.id = report.getId();
+        this.refID = report.getRefID();
+        this.category = report.getCategory();
+        this.rateperuom = report.getRateperuom();
+        this.qty = report.getQty();
+        this.uom = report.getUom();
+        this.charge = report.getCharge();
+        this.startTime = report.getStartTime();
+        this.endTime = report.getEndTime();
+        this.costAdjust = report.getCostAdjust();
+        this.total = report.getTotal();
+        this.note1 = report.getNote1();
+        this.costStatus =report.getCostStatus();
+    }
+
     public Report(String id, String refID, String category, float rateperuom, float qty, String uom, float charge, String startTime, String endTime, float costAdjust, float total, String note1, String costStatus) {
         this.id = id;
         this.refID = refID;
