@@ -16,7 +16,9 @@
 
     <!-- MetisMenu CSS -->
     <link href="css/metisMenu.min.css" rel="stylesheet">
-
+    <link href="css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="css/dataTables/dataTables.responsive.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/startmin.css" rel="stylesheet">
     <link href="css/myquoteformCSS.css" rel="stylesheet">
@@ -37,7 +39,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Service Provider Name</a>
+            <a class="navbar-brand" href="chargeEntrance.html"></a>
         </div>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,7 +50,7 @@
         </button>
 
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
+            <li><a href="chargeEntrance.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-left navbar-top-links">
             <li><a href="/logout"><i class=""></i> Logout</a></li>
@@ -72,7 +74,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="pages/chargeEntrance.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="chargeEntrance.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                 </ul>
@@ -109,21 +111,20 @@
 
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="drayrptTable" id="SP">
+                                <table class="table table-striped table-bordered table-hover" id="SP">
                                     <thead>
                                     <tr>
                                         <td class="firstCol">ID</td>
                                         <td>CtnrID</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="rep:${ctnrlist}">
                                         <td class="firstCol" id="myid" th:text="${rep.id}"></td>
                                         <td th:text="${rep.name}"></td>
-                                        <td><a th:href="@{/drayrpt/ctnrfindById(myid=${rep.id})}">Edit</a></td>
-                                        <td><input type="button" value="Delete" th:data-id="${rep.id}" onclick="del(this.getAttribute('data-id'))"></td>
+                                        <!--<td><a th:href="@{/drayrpt/ctnrfindById(myid=${rep.id})}">Edit</a></td>
+                                        <td><input type="button" value="Delete" th:data-id="${rep.id}" onclick="del(this.getAttribute('data-id'))"></td>-->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -150,9 +151,16 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="js/metisMenu.min.js"></script>
+<script src="js/dataTables/jquery.dataTables.min.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 <script type="text/javascript" th:inline="javascript">
+    $(document).ready(function() {
+        $('#SP').DataTable({
+            responsive: true
+        });
+    })
     function del(myid) {
         var r = confirm("Delete this Row?");
         if (r) {

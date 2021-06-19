@@ -20,26 +20,22 @@ import static com.mangrove.chargereport.genManage.CardConstant.*;
 class ChargeReportApplicationTests {
     InAndOut inAndOut=new InAndOutImp();
 
-    @Test
+   /* @Test
     void emptyListTest() {
-      String testPath=dataPathPrex+"Template"+sep+"emptylist.csv";
+      String testPath=dataPathPrex+"Template"+sep+"ctnrlist0616.csv";
       List<IdName> idNameList=inAndOut.readIdNameFromCSV(testPath);
-      //inAndOut.saveIdNameToCSV(idNameList,testPath);
-      //System.out.println(inAndOut.readIdNameFromCSV(testPath).size());
         for(IdName idName:idNameList){
             System.out.println(idName.toString());
         }
     }
 
-    /*@Test
-    void initData() {
+    @Test
+    void chargeReportInit() {
         String chargeTempPath=dataPathPrex+"Template"+sep+"lspChargeRates0616.csv";
         List<SimpleRateTemp> chargeRateTemp=inAndOut.readSimpleRateFromCSV(chargeTempPath);
         List<IdName> lsplist=inAndOut.readIdNameFromCSV(lsplistPath);
-        List<IdName> ctnrlist=new ArrayList<>();
         List<Report> reportList=new ArrayList<>();
-        *//*reportList.add(new Report("1"," "," ",0,0," ",
-                0," "," ",0,0," "," "));*//*
+
         for(IdName idName:lsplist){
             String lspName=idName.getName();
             String filePath=dataPathPrex+"Dray"+sep+lspName;
@@ -52,19 +48,14 @@ class ChargeReportApplicationTests {
                a=file.mkdir();
             }
             if(a){
-               inAndOut.saveIdNameToCSV(ctnrlist,filePath+sep+"ctnrlist-"+lspName+".csv");
                inAndOut.saveSimpleRateToCSV(chargeRateTemp,filePath+sep+"chargeRate-"+lspName+".csv");
                inAndOut.saveReportToCSV(reportList,pRptPath);
                inAndOut.saveReportToCSV(reportList,submitPath);
                inAndOut.saveReportToCSV(reportList,finalReportPath);
             }
         }
-        inAndOut.saveIdNameToCSV(inAndOut.readIdNameFromCSV(dataPathPrex+"Dray"+sep
-                +"SeaSky"+sep+"ctnrlist0616.csv"),dataPathPrex+"Dray"+sep
-                +"SeaSky"+sep+"ctnrlist-SeaSky.csv");
         inAndOut.saveReportToCSV(reportList,allApproved);
         inAndOut.saveReportToCSV(reportList,allRejected);
         inAndOut.saveReportToCSV(reportList,allSubmitted);
     }*/
-
 }
