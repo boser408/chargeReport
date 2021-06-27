@@ -9,19 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import static com.mangrove.chargereport.genManage.CardConstant.*;
 
 @Controller
@@ -243,26 +238,35 @@ public class ReportController {
     }
     @RequestMapping("/drayrpt/download")
     public void fileDownLoad(@RequestParam("chargeStatus") String chargeStatus,HttpServletResponse response) {
-        String downloadName=chargeStatus+"-"+getLspName()+".csv";
-        String downloadPath=dataPathPrex+"Dray"+sep+getLspName()+sep+downloadName;
-        downloadHandle(response, downloadName, downloadPath);
+        List<Report> reportList;
+        String lspName=getLspName();
+        String lspFolderPath=dataPathPrex+"Dray"+sep+lspName+sep;
+        String downloadName=chargeStatus+"-"+lspName+".csv";
+        if(chargeStatus.equals("All")){
+            reportList=inAndOut.readReportFromCSV(lspFolderPath+"pending"+"-"+lspName+".csv");
+            reportList.addAll(inAndOut.readReportFromCSV(lspFolderPath+"submitted"+"-"+lspName+".csv"));
+            reportList.addAll(inAndOut.readReportFromCSV(lspFolderPath+"approved"+"-"+lspName+".csv"));
+        }else {
+            String downloadPath=lspFolderPath+downloadName;
+            reportList=inAndOut.readReportFromCSV(downloadPath);
+        }
+        downloadHandle(response, downloadName, reportList);
     }
     @RequestMapping("/op/csopdownload")
     public void csopRptDownLoad(@RequestParam("chargeStatus") String chargeStatus,HttpServletResponse response) {
+        List<Report> reportList;
         String downloadName=chargeStatus+"-All.csv";
-        String downloadPath;
         if(chargeStatus.equals("submitted")){
-            downloadPath=allSubmitted;
+            reportList=inAndOut.readReportFromCSV(allSubmitted);
         }else if(chargeStatus.equals("approved")){
-            downloadPath=allApproved;
+            reportList=inAndOut.readReportFromCSV(allApproved);
         }else {
-            downloadPath=allRejected;
+            reportList=inAndOut.readReportFromCSV(allRejected);
         }
-        downloadHandle(response, downloadName, downloadPath);
+        downloadHandle(response, downloadName, reportList);
     }
 
-    public void downloadHandle(HttpServletResponse response, String downloadName, String downloadPath) {
-        List<Report> reportList=inAndOut.readReportFromCSV(downloadPath);
+    public void downloadHandle(HttpServletResponse response, String downloadName,List<Report> reportList) {
         try {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/hmtl;charset=UTF-8");

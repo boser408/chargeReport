@@ -1,1 +1,17 @@
 ﻿ID,refID,category,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+1,GCXU2286072,Demurrage,940,1,perCtnr perDay,940,2021/3/8,,0,940,rush service,Estimated
+2,GCXU2286072,Pier Pass 20GP,35,1,perCtnr,35,2021/4/15,,0,35,rush service,Estimated
+3,SMCU2029431,Demurrage,980,1,perCtnr perDay,980,2021/4/15,,0,980,rush service,Estimated
+4,SMCU2029431,Pier Pass 20GP,35,1,perCtnr,35,2021/4/20,,0,35,rush service,Estimated
+5,NYKU3220564,Demurrage,940,1,perCtnr perDay,940,2021/4/20,,0,940,rush service,Estimated
+6,NYKU3220564,Pier Pass 20GP,35,1,perCtnr,35,2021/4/20,,0,35,rush service,Estimated
+7,SMCU2029431,Per Diem,120,4,perCtnr perDay,480,2021/4/6,2021/4/15,0,480,EXAM CNTR,Estimated
+8,CAIU6463196,Per Diem,0,0,perCtnr perDay,920,2021/3/12,2021/3/30,0,920,1-5DAY /120 6-0 DAY/160,Estimated
+9,SMCU2000130,PERDIEM,0,0,,920,2021/3/11,2021/3/30,0,0,1-5DAY /120 6-0 DAY/160,Estimated
+10,OOCU7885934,pier pass,70,1,cntr,70,2021/4/21,,0,0,OOCU7885934,Estimated
+11,MAGU5201070,pier pass,70,1,cntr,70,2021/4/22,,0,0,MAGU5201070,Estimated
+12,TGBU5670952,Pier Pass 40HQ,70,1,perCtnr,70,2021/4/26,,0,70,TMF,Estimated
+13,TGBU9239748,Pier Pass 40HQ,70,1,perCtnr,70,2021/4/26,,0,70,TMF,Estimated
+14,MEDU7796736,Pier Pass 40HQ,70,1,perCtnr,70,2021/4/27,,0,70,TMF,Estimated
+15,TCNU3743936,Pier Pass 40HQ,70,1,perCtnr,70,2021/4/27,,0,70,TMF,Estimated
+16,CMAU7757650,Pier Pass 40HQ,70,1,perCtnr,70,2021/4/28,,0,70,tmf,Estimated
