@@ -1,5 +1,6 @@
 package com.mangrove.chargereport.tools;
 
+import com.mangrove.chargereport.entity.CtnrInfo;
 import com.mangrove.chargereport.entity.IdName;
 import com.mangrove.chargereport.entity.Report;
 import com.mangrove.chargereport.entity.SimpleRateTemp;
@@ -51,7 +52,7 @@ public class InAndOutImp implements InAndOut{
             fos.write(0xbf);
             OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
             BufferedWriter out = new BufferedWriter(osw);
-            out.write("Item"+","+"Type"+","+"RatePerUOM"+","+"UOM"+","+"BaseCharge"+","+"ChargeCap"+"Currency");
+            out.write("Item"+","+"Type"+","+"RatePerUOM"+","+"UOM"+","+"BaseCharge"+","+"ChargeCap"+","+"Currency");
             out.newLine();
             for(SimpleRateTemp simpleRateTemp:simpleRateTempList){
                 out.write(simpleRateTemp.getItem()+","+simpleRateTemp.getType()+","+simpleRateTemp.getRatePerUOM()+","
@@ -155,6 +156,55 @@ public class InAndOutImp implements InAndOut{
             out.newLine();
             for(Report report:reportList){
                 out.write(report.toCSV());
+                out.newLine();
+            }
+            out.flush();
+            osw.flush();
+            fos.flush();
+            out.close();
+            osw.close();
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<CtnrInfo> readCtnrInfoFromCSV(String readPath) {
+        List<CtnrInfo> ctnrInfoList=new ArrayList<>();
+        try {
+            File filename = new File(readPath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                CtnrInfo ctnrInfo=new CtnrInfo(pricebar[0],pricebar[1],pricebar[2],Float.parseFloat(pricebar[3]),pricebar[4],pricebar[5]
+                        ,pricebar[6],pricebar[7],pricebar[8],pricebar[9],pricebar[10],pricebar[11],pricebar[12]);
+                ctnrInfoList.add(ctnrInfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ctnrInfoList;
+    }
+
+    @Override
+    public void saveCtnrInfoToCSV(List<CtnrInfo> ctnrInfoList, String savePath) {
+        try{
+            FileOutputStream fos=new FileOutputStream(savePath);
+            fos.write(0xef);
+            fos.write(0xbb);
+            fos.write(0xbf);
+            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
+            BufferedWriter out = new BufferedWriter(osw);
+            out.write("ctnrId"+","+"mbl"+","+"ctnrType"+","+"ctnrWeight"+","+"portETA"+","+"demLFD"+","+"outGate"
+                    +","+"delivery"+","+"empty"+","+"emptyReturn"+","+"perDiemLFD"+","+"customer"+","+"notes");
+            out.newLine();
+            for(CtnrInfo ctnrInfo:ctnrInfoList){
+                out.write(ctnrInfo.toCSV());
                 out.newLine();
             }
             out.flush();
