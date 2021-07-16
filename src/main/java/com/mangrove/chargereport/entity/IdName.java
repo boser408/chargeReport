@@ -30,12 +30,7 @@ public class IdName {
 
     @Override
     public String toString() {
-        return "IdName{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-    public String toCSV(){
         return id +"," + name;
     }
+
 }

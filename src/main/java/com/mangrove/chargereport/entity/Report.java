@@ -156,25 +156,9 @@ public class Report {
 
     @Override
     public String toString() {
-        return "Report{" +
-                "id='" + id + '\'' +
-                ", refID='" + refID + '\'' +
-                ", category='" + category + '\'' +
-                ", rateperuom=" + rateperuom +
-                ", qty=" + qty +
-                ", uom='" + uom + '\'' +
-                ", charge=" + charge +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", costAdjust=" + costAdjust +
-                ", total=" + total +
-                ", note1='" + note1 + '\'' +
-                ", costStatus='" + costStatus + '\'' +
-                '}';
-    }
-
-    public String toCSV() {
         return id+","+refID+","+category +","+rateperuom +","+ qty +","+uom+","+charge+","+startTime+","+endTime+","
                 +costAdjust+","+total+","+note1+","+costStatus;
     }
+
+
 }

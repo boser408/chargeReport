@@ -80,17 +80,7 @@ public class SimpleRateTemp {
 
     @Override
     public String toString() {
-        return "SimpleRateTemp{" +
-                "item='" + item + '\'' +
-                ", Type='" + Type + '\'' +
-                ", ratePerUOM=" + ratePerUOM +
-                ", uom='" + uom + '\'' +
-                ", baseCharge=" + baseCharge +
-                ", chargeCap=" + chargeCap +
-                ", currency='" + currency + '\'' +
-                '}';
-    }
-    public String toCSV(){
         return item + "," + Type + "," + ratePerUOM + "," + uom + "," + baseCharge + "," + chargeCap + "," + currency;
     }
+
 }

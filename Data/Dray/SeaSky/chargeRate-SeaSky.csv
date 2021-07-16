@@ -1,49 +1,44 @@
-﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCapCurrency
-Drayage-Standard,Dray from Pier to WH,0.0,per Ctnr,0.0,0.0,拖车费
-Drayage-Pass Through,LA/LB Pier Pass - 20GP,0.0,per Ctnr,0.0,0.0,洛杉矶港口费（TEU）
-Drayage-Pass Through,LA/LB Pier Pass - 40/45,0.0,per Ctnr,0.0,0.0,洛杉矶港口费（FEU）
-Drayage-Pass Through,OAK Gate Fee,0.0,per Ctnr,0.0,0.0,奥克兰港口费
-Drayage-Pass Through,Demurrage,0.0,per Ctnr,0.0,0.0,滞港费
-Drayage-Pass Through,Per Diem,0.0,per Ctnr,0.0,0.0,滞箱费
-Drayage-Std Ad Hoc,Port Congestion,0.0,per Ctnr,0.0,0.0,港口拥堵费
-Drayage-Std Ad Hoc,Port Waiting Over 2hr,0.0,per Hr,0.0,0.0,港口等候费
-Drayage-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,卸柜等候费
-Drayage-Std Ad Hoc,Pre-Pull,0.0,per Ctnr,0.0,0.0,预提费
-Drayage-Std Ad Hoc,Chassis,0.0,per Ctnr per Day,0.0,0.0,标准车架费
-Drayage-Std Ad Hoc,Yard Storage,0.0,per Ctnr per Night,0.0,0.0,暂存费
-Drayage-Std Ad Hoc,Unplanned Overnight Fee,0.0,per Ctnr per Night,0.0,0.0,计划外过夜费
-Drayage-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Ctnr,0.0,0.0,周末送柜附加费
-Drayage-Std Ad Hoc,Dropoff Fee,0.0,per Ctnr,0.0,0.0,落柜费
-Drayage-Std Ad Hoc,Dry Run,0.0,per Ctnr,0.0,0.0,空驶费
-Drayage-Std Ad Hoc,Chassis Split,0.0,per Ctnr,0.0,0.0,车架拆分费
-Drayage-Std Ad Hoc,Triaxile Chassis,0.0,per Ctnr,0.0,0.0,三轴车架费
-Drayage-Std Ad Hoc,Overweight Charge,0.0,per Ctnr,0.0,0.0,超重费
-Drayage-Std Ad Hoc,Scale Ticket,0.0,per Ctnr,0.0,0.0,称重费
-Drayage-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,查验拖车费
-Drayage-Std Ad Hoc,Bobtail Fee,0.0,per Ctnr,0.0,0.0,落柜返程费
-Drayage-Std Ad Hoc,Payment Service,0.0,per Ctnr,0.0,0.0,代付手续费
-Drayage-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,多点派送费
-Customs-Standard,Customs Entry Fee,0.0,per B/L,0.0,0.0,申报费
-Customs-Standard,ISF/AMS Fee,0.0,per B/L,0.0,0.0,ISF/AMS费
-Customs-Std Ad Hoc,FDA/OGA Filing Fee,0.0,per B/L,0.0,0.0,其他申报费
-Customs-Std Ad Hoc,Exam Site Drayage,0.0,per Ctnr,0.0,0.0,查验拖车费
-Customs-Std Ad Hoc,Inspection Handling Fee,0.0,per B/L,0.0,0.0,查验服务费
-Customs-Std Ad Hoc,Payment Service,0.0,per B/L,0.0,0.0,代付手续费
-Customs-Pass Through,Duty Payment,0.0,per B/L,0.0,0.0,税金
-Customs-Pass Through,Single Bond,0.0,per B/L,0.0,0.0,单次保证金
-Customs-Pass Through,Customs Bond,0.0,per B/L,0.0,0.0,海关保证金
-Customs-Pass Through,Annual Bond,0.0,per B/L,0.0,0.0,全年保证金
-Transload-Standard,Devanning,0.0,per Ctnr,0.0,0.0,掏箱费
-Transload-Standard,Palletization,0.0,per Pallet,0.0,0.0,打托费
-Transload-Standard,Pallet Loading,0.0,per Pallet,0.0,0.0,托盘装车费
-Transload-Standard,Order Processing,0.0,per Order,0.0,0.0,订单处理费
-Transload-Standard,Outbound Order,0.0,per BOL,0.0,0.0,发货制单费
-Transload-Std Ad Hoc,Sort Fee (Extra Carton),0.0,per Carton,0.0,0.0,超箱清点费
-Transload-Std Ad Hoc,Pallet Seal,0.0,per Truck,0.0,0.0,整车铅封费
-Transload-Std Ad Hoc,Pallet Storage,0.0,per Pallet per Day,0.0,0.0,托盘暂存费
-Transload-Std Ad Hoc,Pickup Handling Fee,0.0,per Pallet,0.0,0.0,提货管理费
-Trucking-Standard,FTL Delivery,0.0,per Truck,0.0,0.0,整车派送费
-Trucking-Standard,LTL Delivery,0.0,per Pallet,0.0,0.0,零担派送费
-Trucking-Std Ad Hoc,Delivery Waiting Over 2hr,0.0,per Hr,0.0,0.0,卸货等候费
-Trucking-Std Ad Hoc,Stop Off Fee,0.0,per Stop,0.0,0.0,多点派送费
-Trucking-Std Ad Hoc,Weekend Delivery Surcharge,0.0,per Truck,0.0,0.0,周末送柜附加费
+﻿Item,Type,RatePerUOM,UOM,BaseCharge,ChargeCap,Currency
+Customs-Pass Through,Annual Bond,0,per B/L,0,0,全年保证金
+Drayage-Std Ad Hoc,Bobtail Fee,0,per Ctnr,0,0,落柜返程费
+Drayage-Std Ad Hoc,Chassis,0,per Ctnr per Day,0,0,标准车架费
+Drayage-Std Ad Hoc,Chassis Split,0,per Ctnr,0,0,车架拆分费
+Customs-Pass Through,Customs Bond,0,per B/L,0,0,海关保证金
+Customs-Standard,Customs Entry Fee,0,per B/L,0,0,申报费
+Trucking-Std Ad Hoc,Delivery Waiting Over 2hr,0,per Hr,0,0,卸货等候费
+Drayage-Pass Through,Demurrage,0,per Ctnr,0,0,滞港费
+Transload-Standard,Devanning,0,per Ctnr,0,0,掏箱费
+Drayage-Standard,Dray from Pier to WH,0,per Ctnr,0,0,拖车费
+Drayage-Std Ad Hoc,Dropoff Fee,0,per Ctnr,0,0,落柜费
+Drayage-Std Ad Hoc,Dry Run,0,per Ctnr,0,0,空驶费
+Customs-Pass Through,Duty Payment,0,per B/L,0,0,税金
+Customs-Std Ad Hoc,Exam Site Drayage,0,per Ctnr,0,0,查验拖车费
+Customs-Std Ad Hoc,FDA/OGA Filing Fee,0,per B/L,0,0,其他申报费
+Trucking-Standard,FTL Delivery,0,per Truck,0,0,整车派送费
+Customs-Std Ad Hoc,Inspection Handling Fee,0,per B/L,0,0,查验服务费
+Customs-Standard,ISF/AMS Fee,0,per B/L,0,0,ISF/AMS费
+Drayage-Pass Through,LA/LB Pier Pass - 20GP,0,per Ctnr,0,0,洛杉矶港口费（TEU）
+Drayage-Pass Through,LA/LB Pier Pass - 40/45,0,per Ctnr,0,0,洛杉矶港口费（FEU）
+Trucking-Standard,LTL Delivery,0,per Pallet,0,0,零担派送费
+Drayage-Pass Through,OAK Gate Fee,0,per Ctnr,0,0,奥克兰港口费
+Transload-Standard,Order Processing,0,per Order,0,0,订单处理费
+Transload-Standard,Outbound Order,0,per BOL,0,0,发货制单费
+Drayage-Std Ad Hoc,Overweight Charge,0,per Ctnr,0,0,超重费
+Transload-Standard,Pallet Loading,0,per Pallet,0,0,托盘装车费
+Transload-Std Ad Hoc,Pallet Seal,0,per Truck,0,0,整车铅封费
+Transload-Std Ad Hoc,Pallet Storage,0,per Pallet per Day,0,0,托盘暂存费
+Transload-Standard,Palletization,0,per Pallet,0,0,打托费
+Customs-Std Ad Hoc,Payment Service,0,per B/L,0,0,代付手续费
+Drayage-Pass Through,Per Diem,0,per Ctnr,0,0,滞箱费
+Transload-Std Ad Hoc,Pickup Handling Fee,0,per Pallet,0,0,提货管理费
+Drayage-Std Ad Hoc,Port Congestion,0,per Ctnr,0,0,港口拥堵费
+Drayage-Std Ad Hoc,Port Waiting Over 2hr,0,per Hr,0,0,港口等候费
+Drayage-Std Ad Hoc,Pre-Pull,0,per Ctnr,0,0,预提费
+Drayage-Std Ad Hoc,Scale Ticket,0,per Ctnr,0,0,称重费
+Customs-Pass Through,Single Bond,0,per B/L,0,0,单次保证金
+Transload-Std Ad Hoc,Sort Fee (Extra Carton),0,per Carton,0,0,超箱清点费
+Trucking-Std Ad Hoc,Stop Off Fee,0,per Stop,0,0,多点派送费
+Drayage-Std Ad Hoc,Triaxile Chassis,0,per Ctnr,0,0,三轴车架费
+Drayage-Std Ad Hoc,Unplanned Overnight Fee,0,per Ctnr per Night,0,0,计划外过夜费
+Trucking-Std Ad Hoc,Weekend Delivery Surcharge,0,per Truck,0,0,周末送柜附加费
+Drayage-Std Ad Hoc,Yard Storage,0,per Ctnr per Night,0,0,暂存费

@@ -1,9 +1,7 @@
 package com.mangrove.chargereport.tools;
 
-import com.mangrove.chargereport.entity.CtnrInfo;
-import com.mangrove.chargereport.entity.IdName;
-import com.mangrove.chargereport.entity.Report;
-import com.mangrove.chargereport.entity.SimpleRateTemp;
+import com.mangrove.chargereport.entity.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +12,30 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class InAndOutImp implements InAndOut{
 
-
+    public <T> void saveToCSV(List<T> tList,String capital,String savePath) {
+        try{
+            FileOutputStream fos=new FileOutputStream(savePath);
+            fos.write(0xef);
+            fos.write(0xbb);
+            fos.write(0xbf);
+            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
+            BufferedWriter out = new BufferedWriter(osw);
+            out.write(capital);
+            out.newLine();
+            for(T t:tList){
+                out.write(t.toString());
+                out.newLine();
+            }
+            out.flush();
+            osw.flush();
+            fos.flush();
+            out.close();
+            osw.close();
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     @Override
     public List<SimpleRateTemp> readSimpleRateFromCSV(String readPath) {
         List<SimpleRateTemp> simpleRateTempList=new ArrayList<>();
@@ -42,35 +63,11 @@ public class InAndOutImp implements InAndOut{
         }
         return simpleRateTempList;
     }
-
     @Override
     public void saveSimpleRateToCSV(List<SimpleRateTemp> simpleRateTempList, String savePath) {
-        try{
-            FileOutputStream fos=new FileOutputStream(savePath);
-            fos.write(0xef);
-            fos.write(0xbb);
-            fos.write(0xbf);
-            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
-            BufferedWriter out = new BufferedWriter(osw);
-            out.write("Item"+","+"Type"+","+"RatePerUOM"+","+"UOM"+","+"BaseCharge"+","+"ChargeCap"+","+"Currency");
-            out.newLine();
-            for(SimpleRateTemp simpleRateTemp:simpleRateTempList){
-                out.write(simpleRateTemp.getItem()+","+simpleRateTemp.getType()+","+simpleRateTemp.getRatePerUOM()+","
-                        +simpleRateTemp.getUom()+","+simpleRateTemp.getBaseCharge()+","+simpleRateTemp.getChargeCap()+","
-                        +simpleRateTemp.getCurrency());
-                out.newLine();
-            }
-            out.flush();
-            osw.flush();
-            fos.flush();
-            out.close();
-            osw.close();
-            fos.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        String capital="Item"+","+"Type"+","+"RatePerUOM"+","+"UOM"+","+"BaseCharge"+","+"ChargeCap"+","+"Currency";
+        saveToCSV(simpleRateTempList,capital,savePath);
     }
-
     @Override
     public List<IdName> readIdNameFromCSV(String readPath) {
         List<IdName> idNameList=new ArrayList<>();
@@ -93,33 +90,11 @@ public class InAndOutImp implements InAndOut{
         }
         return idNameList;
     }
-
     @Override
     public void saveIdNameToCSV(List<IdName> idNameList, String savePath) {
-        try{
-            FileOutputStream fos=new FileOutputStream(savePath);
-            fos.write(0xef);
-            fos.write(0xbb);
-            fos.write(0xbf);
-            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
-            BufferedWriter out = new BufferedWriter(osw);
-            out.write("Id"+","+"Name");
-            out.newLine();
-            for(IdName idName:idNameList){
-                out.write(idName.toCSV());
-                out.newLine();
-            }
-            out.flush();
-            osw.flush();
-            fos.flush();
-            out.close();
-            osw.close();
-            fos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        String capital="Id"+","+"Name";
+        saveToCSV(idNameList,capital,savePath);
     }
-
     @Override
     public List<Report> readReportFromCSV(String readPath) {
         List<Report> reportList=new ArrayList<>();
@@ -141,34 +116,12 @@ public class InAndOutImp implements InAndOut{
         }
         return reportList;
     }
-
     @Override
     public void saveReportToCSV(List<Report> reportList, String savePath) {
-        try{
-            FileOutputStream fos=new FileOutputStream(savePath);
-            fos.write(0xef);
-            fos.write(0xbb);
-            fos.write(0xbf);
-            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
-            BufferedWriter out = new BufferedWriter(osw);
-            out.write("ID"+","+"refID"+","+"category"+","+"rateperuom"+","+"qty"+","+"uom"+","+"charge"+","+"startTime"+
-                    ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus");
-            out.newLine();
-            for(Report report:reportList){
-                out.write(report.toCSV());
-                out.newLine();
-            }
-            out.flush();
-            osw.flush();
-            fos.flush();
-            out.close();
-            osw.close();
-            fos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        String capital="ID"+","+"refID"+","+"category"+","+"rateperuom"+","+"qty"+","+"uom"+","+"charge"+","+"startTime"+
+                ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus";
+        saveToCSV(reportList,capital,savePath);
     }
-
     @Override
     public List<CtnrInfo> readCtnrInfoFromCSV(String readPath) {
         List<CtnrInfo> ctnrInfoList=new ArrayList<>();
@@ -190,31 +143,61 @@ public class InAndOutImp implements InAndOut{
         }
         return ctnrInfoList;
     }
-
     @Override
     public void saveCtnrInfoToCSV(List<CtnrInfo> ctnrInfoList, String savePath) {
-        try{
-            FileOutputStream fos=new FileOutputStream(savePath);
-            fos.write(0xef);
-            fos.write(0xbb);
-            fos.write(0xbf);
-            OutputStreamWriter osw=new OutputStreamWriter(fos,UTF_8);
-            BufferedWriter out = new BufferedWriter(osw);
-            out.write("ctnrId"+","+"mbl"+","+"ctnrType"+","+"ctnrWeight"+","+"portETA"+","+"demLFD"+","+"outGate"
-                    +","+"delivery"+","+"empty"+","+"emptyReturn"+","+"perDiemLFD"+","+"customer"+","+"notes");
-            out.newLine();
-            for(CtnrInfo ctnrInfo:ctnrInfoList){
-                out.write(ctnrInfo.toCSV());
-                out.newLine();
+        String capital="ctnrId"+","+"mbl"+","+"ctnrType"+","+"ctnrWeight"+","+"portETA"+","+"demLFD"+","+"outGate"
+                +","+"delivery"+","+"empty"+","+"emptyReturn"+","+"perDiemLFD"+","+"customer"+","+"notes";
+        saveToCSV(ctnrInfoList,capital,savePath);
+    }
+    @Override
+    public List<ChargeRecord> readChargeRecordFromCSV(String readPath) {
+        List<ChargeRecord> chargeRecordList=new ArrayList<>();
+        try {
+            File filename = new File(readPath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                ChargeRecord chargeRecord=new ChargeRecord(pricebar[0],pricebar[1],pricebar[2],pricebar[3],pricebar[4]
+                        ,Float.parseFloat(pricebar[5]),Float.parseFloat(pricebar[6]),pricebar[7]
+                        ,Float.parseFloat(pricebar[8]),pricebar[9],pricebar[10],Float.parseFloat(pricebar[11])
+                        ,Float.parseFloat(pricebar[12]),pricebar[13],pricebar[14],pricebar[15]);
+                chargeRecordList.add(chargeRecord);
             }
-            out.flush();
-            osw.flush();
-            fos.flush();
-            out.close();
-            osw.close();
-            fos.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return chargeRecordList;
+    }
+    @Override
+    public List<ChargeRecord> importChargeRecordFromMPF(MultipartFile csvFile) {
+        List<ChargeRecord> chargeRecordList=new ArrayList<>();
+        try {
+            InputStreamReader reader = new InputStreamReader(csvFile.getInputStream());
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                ChargeRecord chargeRecord=new ChargeRecord(pricebar[0],pricebar[1],pricebar[2],pricebar[3],pricebar[4]
+                        ,Float.parseFloat(pricebar[5]),Float.parseFloat(pricebar[6]),pricebar[7]
+                        ,Float.parseFloat(pricebar[8]),pricebar[9],pricebar[10],Float.parseFloat(pricebar[11])
+                        ,Float.parseFloat(pricebar[12]),pricebar[13],pricebar[14],pricebar[15]);
+                chargeRecordList.add(chargeRecord);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chargeRecordList;
+    }
+    @Override
+    public void saveChargeRecordToCSV(List<ChargeRecord> chargeRecordList, String savePath) {
+        String capital="ID"+","+"refID"+","+"Leg"+","+"category"+","+"CN"+","+"rateperuom"+","+"qty"+","+"uom"+","+"charge"+","+"startTime"+
+                ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus"+","+"CSOPcomments";
+        saveToCSV(chargeRecordList,capital,savePath);
     }
 }

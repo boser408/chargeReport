@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -229,7 +228,7 @@ public class ReportController {
             String capital="ID"+","+"CtnrID\n";
             out.write(capital.getBytes("UTF-8"));
             for(IdName idName:idNameList){
-                out.write((idName.toCSV()+"\n").getBytes("UTF-8"));
+                out.write((idName.toString()+"\n").getBytes("UTF-8"));
             }
             out.close();
         } catch (IOException e) {
@@ -278,7 +277,7 @@ public class ReportController {
                     ","+"endTime"+","+"costAdjust"+","+"total" +","+"note1"+","+"costStatus\n";
             out.write(capital.getBytes("UTF-8"));
             for(Report report:reportList){
-                out.write((report.toCSV()+"\n").getBytes("UTF-8"));
+                out.write((report.toString()+"\n").getBytes("UTF-8"));
             }
             out.close();
         } catch (IOException e) {

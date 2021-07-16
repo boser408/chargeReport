@@ -1,9 +1,7 @@
 package com.mangrove.chargereport.tools;
 
-import com.mangrove.chargereport.entity.CtnrInfo;
-import com.mangrove.chargereport.entity.IdName;
-import com.mangrove.chargereport.entity.Report;
-import com.mangrove.chargereport.entity.SimpleRateTemp;
+import com.mangrove.chargereport.entity.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,4 +15,7 @@ public interface InAndOut {
     void saveReportToCSV(List<Report> reportList, String savePath);
     List<CtnrInfo> readCtnrInfoFromCSV(String readPath);
     void saveCtnrInfoToCSV(List<CtnrInfo> ctnrInfoList,String savePath);
+    List<ChargeRecord> readChargeRecordFromCSV(String readPath);
+    List<ChargeRecord> importChargeRecordFromMPF(MultipartFile csvFile);
+    void saveChargeRecordToCSV(List<ChargeRecord> chargeRecordList,String savePath);
 }

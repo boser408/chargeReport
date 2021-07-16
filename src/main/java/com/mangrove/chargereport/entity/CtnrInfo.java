@@ -138,25 +138,9 @@ public class CtnrInfo {
 
     @Override
     public String toString() {
-        return "CtnrInfo{" +
-                "ctnrId='" + ctnrId + '\'' +
-                ", mbl='" + mbl + '\'' +
-                ", ctnrType='" + ctnrType + '\'' +
-                ", ctnrWeight=" + ctnrWeight +
-                ", portETA='" + portETA + '\'' +
-                ", demLFD='" + demLFD + '\'' +
-                ", outGate='" + outGate + '\'' +
-                ", delivery='" + delivery + '\'' +
-                ", empty='" + empty + '\'' +
-                ", emptyReturn='" + emptyReturn + '\'' +
-                ", perDiemLFD='" + perDiemLFD + '\'' +
-                ", customer='" + customer + '\'' +
-                ", notes='" + notes + '\'' +
-                '}';
-    }
-
-    public String toCSV(){
         return ctnrId + "," + mbl+"," +ctnrType + "," + ctnrWeight+ "," + portETA +","+ demLFD +","+ outGate
                 +","+ delivery +","+ empty +","+emptyReturn+","+ perDiemLFD +","+ customer +","+ notes;
     }
+
+
 }
