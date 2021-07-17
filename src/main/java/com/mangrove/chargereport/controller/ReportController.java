@@ -1,18 +1,25 @@
 package com.mangrove.chargereport.controller;
 
 import com.mangrove.chargereport.entity.IdName;
+import com.mangrove.chargereport.entity.LSPupload;
 import com.mangrove.chargereport.entity.Report;
+import com.mangrove.chargereport.tools.DownloadHandle;
 import com.mangrove.chargereport.tools.InAndOut;
 import com.mangrove.chargereport.tools.InAndOutImp;
+import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,6 +48,7 @@ public class ReportController {
         return dataPathPrex+"Dray"+sep+lspName+sep+"approved-"+lspName+".csv";
     }
 
+
     @RequestMapping("/drayrpt/ctnrlist")
     public String ctnrlist(Model model){
         model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath(getLspName())));
@@ -66,6 +74,12 @@ public class ReportController {
         model.addAttribute("ctnrlist",inAndOut.readIdNameFromCSV(getctnrlistPath(getLspName())));
         return "drayctnrlist";
     }
+    @RequestMapping("/drayrpt/rcReview")
+    public String rcReview(Model model){
+        String drayRC=webRCpathPrex+"Dray"+sep+getLspName()+sep+"dray"+getLspName()+"LGB.csv";
+        model.addAttribute("drayRC",inAndOut.readDrayRateFromCSV(drayRC));
+        return "drayRCreview";
+    }
     @RequestMapping("/drayrpt/issuelist")
     public String issuelist(Model model){
         model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
@@ -74,6 +88,20 @@ public class ReportController {
         return "drayissuelist";
     }
 
+    @RequestMapping("/drayrpt/reviewUpload")
+    public String reviewUpload(@RequestParam("filePath") MultipartFile csvFile,Model model){
+        String tempPath=dataPathPrex+"Dray"+sep+getLspName()+sep+"Temp"+sep;
+        String tempReport=tempPath+"tempUploadReport.csv";
+        List<LSPupload> lsPuploadList=inAndOut.importLSPuploadFromMPF(csvFile);
+        int year=LocalDate.now().getYear();
+        for(LSPupload lsPupload:lsPuploadList){
+            lsPupload.setStartTime(year+"/"+lsPupload.getStartTime());
+            lsPupload.setEndTime(year+"/"+lsPupload.getEndTime());
+        }
+        inAndOut.saveLSPuploadToCSV(lsPuploadList,tempReport);
+        model.addAttribute("lsPuploads",lsPuploadList);
+        return "drayReviewUpload";
+    }
     @RequestMapping("/drayrpt/del")
     public String drayrptDel(@RequestParam("delID") String delID,Model model){
         delRptById(getPendingPath(getLspName()),delID);
@@ -234,6 +262,14 @@ public class ReportController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @RequestMapping("/lspuploadTempDl")
+    public void lspUploadTempdl(HttpServletResponse response){
+        String downloadname="lspuploadTemp.csv";
+        String capital="refID"+","+"Leg"+","+"category"+","+"CN"+","+"rateperuom"+","+"qty"+","+"uom"+","+"charge"+","+"startTime"+
+                ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus\n";
+        new DownloadHandle(response).dlHandle(downloadname,capital
+                ,inAndOut.readLSPuploadFromCSV(dataPathPrex+"Template"+sep+"LSPuploadTemp.csv"));
     }
     @RequestMapping("/drayrpt/download")
     public void fileDownLoad(@RequestParam("chargeStatus") String chargeStatus,HttpServletResponse response) {

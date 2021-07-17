@@ -1,0 +1,3 @@
+﻿ID,refID,category,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+SeaSky-5,BMOU5451288,Per Diem,40,1,,40,2021/6/11,2021/6/14,0,40,-,Confirmed
+SeaSky-5,BMOU5451288,Chassis,40,1,,40,2021/6/11,2021/6/14,0,40,船公司chassis fee（evergreen）,Confirmed

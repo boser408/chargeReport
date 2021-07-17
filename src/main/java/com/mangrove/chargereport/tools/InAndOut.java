@@ -18,4 +18,9 @@ public interface InAndOut {
     List<ChargeRecord> readChargeRecordFromCSV(String readPath);
     List<ChargeRecord> importChargeRecordFromMPF(MultipartFile csvFile);
     void saveChargeRecordToCSV(List<ChargeRecord> chargeRecordList,String savePath);
+    List<LSPupload> readLSPuploadFromCSV(String readPath);
+    List<LSPupload> importLSPuploadFromMPF(MultipartFile csvFile);
+    void saveLSPuploadToCSV(List<LSPupload> lsPuploadList,String savePath);
+    List<DrayRate> readDrayRateFromCSV(String readPath);
+    void saveDrayRateToCSV(List<DrayRate> drayRateList,String savePath);
 }

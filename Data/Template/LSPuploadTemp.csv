@@ -1,0 +1,10 @@
+﻿refID,Leg,category,CN,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+GCXU2286072,d.osw,Loading,装车费,940,1,PLT/carton,940,3/8,4/15,0,940,rush service,Estimated
+GCXU2286072,d.osw,Palletization,打托费,35,1,PLT,35,4/15,4/16,0,35,rush service,Estimated
+SMCU2029431,d.osw,Devanning & Unload,卸货费,980,1,Ctnr/PLT/KG/carton,980,4/15,4/17,0,980,rush service,Estimated
+SMCU2029431,d.osw,Storage,暂存费,35,1,PLT/CBM,35,4/20,4/28,0,35,rush service,Estimated
+NYKU3220564,d.chb,Import Duty,进口关税,940,1,HBL,940,4/20,4/29,0,940,rush service,Estimated
+NYKU3220564,d.truck,Other Delivery Charges,其他送货费,35,1,FTL/PLT/KG,35,4/20,4/30,0,35,rush service,Estimated
+SMCU2029431,d.dray,CFS Pickup,CFS提货费,120,4,PLT/KG,480,4/6,4/21,0,480,EXAM CNTR,Estimated
+CAIU6463196,d.truck,Delivery,运费,0,0,FTL/PLT/KG,920,3/12,4/22,0,920,1-5DAY /120 6-0 DAY/160,Estimated
+SMCU2000130,d.dray,Pre Pull,预提费,0,0,Ctnr,920,3/11,4/23,0,0,1-5DAY /120 6-0 DAY/160,Estimated

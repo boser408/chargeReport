@@ -101,7 +101,9 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab">Pending</a>
+                                <li class="active"><a href="#home" data-toggle="tab">UpLoad</a>
+                                </li>
+                                <li><a href="#settings" data-toggle="tab">Pending</a>
                                 </li>
                                 <li><a href="#profile" data-toggle="tab">Submitted</a>
                                 </li>
@@ -113,6 +115,44 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
+
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Notes for Quoting Calculation / 物流服务商综合报价说明
+                                                <a class="pull-right" href="/lspuploadTempDl">LSP upload Template Download/费用信息上传模板下载</a>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>
+                                                    1. This quoting system will compare prices of 4 Categories of LSP (Dray,Warehouse,Truck and Courier) in selected port
+                                                    / 此报价系统将比较选定港口的4类物流服务商（港口拖卡，仓库，卡派以及快递）的报价
+                                                </p>
+                                                <p>2. A total cost of "0" in Dray and Truck Quotes means no service available / 如果某个LSP的港口拖卡和卡派报价为“0”表示无相应服务 </p>
+                                                <p>3. For couriers' quoting result, if "Deferred Transload" is selected in this page, carton is assumed as the basic package
+                                                    and destination address is assumed as "Commercial"; if "Retail Fulfill" is selected, unit is assumed as the basic package
+                                                    and destination address is assumed as "Residential" / 在测算快递价格时，如果在本页面选择"Deferred Transload"（暂存转运）作为物流方式
+                                                    ，则测算时将包装箱作为最小包装，并假定快递的目的地是商业区域；而如选则"Retail Fulfill"（一件代发）作为物流方式，则测算时以包装箱内的商品个数（unit）
+                                                    作为最小包装，并假定快递的目的地是居民住宅区域</p>
+                                            </div>
+                                            <div class="panel-footer">
+                                                Notes
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form id="selectLSP"  action="" method="" enctype="multipart/form-data" >
+                                        <table >
+                                            <tr>
+                                                <td><input id="uploadFile" type="file" class="b" name="filePath" accept=".csv"></td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-outline btn-primary" onclick="validate()" >
+                                                        Upload LSP Charge Report Then Click Here to Review
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="settings">
                                     <div class="panel-heading">
                                         <table>
                                             <tr>
@@ -319,6 +359,17 @@
             responsive: true
         });
     })
+    function validate() {
+        let upload = $('#uploadFile').val();
+        if(upload===""){
+            alert("Upload File is required!!!");
+        }else{
+            $("#selectLSP").attr("action","/drayrpt/reviewUpload");
+            $("#selectLSP").attr("method","post");
+            $("#selectLSP").submit;
+        }
+        return false;
+    }
     function del(myid) {
         const r = confirm("Delete this Row?");
         window.location.href="/drayrpt/del?delID="+myid;

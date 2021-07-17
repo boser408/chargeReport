@@ -200,4 +200,86 @@ public class InAndOutImp implements InAndOut{
                 ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus"+","+"CSOPcomments";
         saveToCSV(chargeRecordList,capital,savePath);
     }
+    @Override
+    public List<LSPupload> readLSPuploadFromCSV(String readPath) {
+        List<LSPupload> lsPuploadList=new ArrayList<>();
+        try {
+            File filename = new File(readPath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                LSPupload lsPupload=new LSPupload(pricebar[0],pricebar[1],pricebar[2],pricebar[3]
+                        ,Float.parseFloat(pricebar[4]),Float.parseFloat(pricebar[5]),pricebar[6]
+                        ,Float.parseFloat(pricebar[7]),pricebar[8],pricebar[9],Float.parseFloat(pricebar[10])
+                        ,Float.parseFloat(pricebar[11]),pricebar[12],pricebar[13]);
+                lsPuploadList.add(lsPupload);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lsPuploadList;
+    }
+    @Override
+    public List<LSPupload> importLSPuploadFromMPF(MultipartFile csvFile) {
+        List<LSPupload> lsPuploadList=new ArrayList<>();
+        try {
+            InputStreamReader reader = new InputStreamReader(csvFile.getInputStream());
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                LSPupload lsPupload=new LSPupload(pricebar[0],pricebar[1],pricebar[2],pricebar[3]
+                        ,Float.parseFloat(pricebar[4]),Float.parseFloat(pricebar[5]),pricebar[6]
+                        ,Float.parseFloat(pricebar[7]),pricebar[8],pricebar[9],Float.parseFloat(pricebar[10])
+                        ,Float.parseFloat(pricebar[11]),pricebar[12],pricebar[13]);
+                lsPuploadList.add(lsPupload);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lsPuploadList;
+    }
+    @Override
+    public void saveLSPuploadToCSV(List<LSPupload> lsPuploadList, String savePath) {
+        String capital="refID"+","+"Leg"+","+"category"+","+"CN"+","+"rateperuom"+","+"qty"+","+"uom"+","+"charge"+","+"startTime"+
+                ","+"endTime"+","+"costAdjust"+","+"total"+","+"note1"+","+"costStatus";
+        saveToCSV(lsPuploadList,capital,savePath);
+    }
+    private void readDrayRate(List<DrayRate> drayRateList, BufferedReader br) throws IOException {
+        String line;
+        while ((line = br.readLine())!= null) {
+            String[] pricebar=line.split(",");
+            DrayRate drayRate=new DrayRate(pricebar[0],pricebar[1],pricebar[2],Float.parseFloat(pricebar[3])
+                    ,Float.parseFloat(pricebar[4]),pricebar[5],pricebar[6]);
+            drayRateList.add(drayRate);
+        }
+    }
+
+    @Override
+    public List<DrayRate> readDrayRateFromCSV(String readPath) {
+        List<DrayRate> drayRateList=new ArrayList<>();
+        try {
+            File filename = new File(readPath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            readDrayRate(drayRateList, br);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return drayRateList;
+    }
+
+    @Override
+    public void saveDrayRateToCSV(List<DrayRate> drayRateList, String savePath) {
+        String capital="Item"+","+"c1"+","+"c2"+","+"RatePerUOM"+","+"Adjust"+","+"UOM"+","+"CN";
+        saveToCSV(drayRateList,capital,savePath);
+    }
 }

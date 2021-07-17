@@ -1,0 +1,39 @@
+﻿Leg,category,RatePerUOM,uom,CN
+d.osw,Loading,0,PLT/carton,装车费
+d.osw,Palletization,0,PLT,打托费
+d.osw,Devanning & Unload,0,Ctnr/PLT/KG/carton,卸货费
+d.osw,Storage,0,PLT/CBM,暂存费
+d.chb,Import Duty,0,HBL,进口关税
+d.truck,Other Delivery Charges,0,FTL/PLT/KG,其他送货费
+d.dray,CFS Pickup,0,PLT/KG,CFS提货费
+d.truck,Delivery,0,FTL/PLT/KG,运费
+d.dray,Pre Pull,0,Ctnr,预提费
+d.dray,Yard Storage,0,Ctnr,集柜堆存费
+d.dray,Port Congestion Fee,0,Ctnr,港口拥堵费
+d.dray,Pier Pass and Terminal Fee,0,Ctnr,港口费
+d.dray,Terminal Wait Time,0,Ctnr,港口等候费
+d.dray,Chasis Rental,0,Ctnr,车架使用费
+d.agent,Payment Admin,0,HBL,代付费
+d.agent,Other Handling,0,HBL,其他操作费
+d.agent,Rush Pickup,0,Ctnr,加急提柜费
+d.chb,Import Exam Admin,0,HBL,进口查验服务费
+d.chb,Other CHB Fee,0,HBL,其他报关费
+d.chb,Import VAT,0,HBL,进口增值税
+d.dray,Unload Wait Time,0,Ctnr,卸柜等候费
+d.dray,Drop off/Bobtail,0,Ctnr,落柜空驶费
+d.dray,Other Pickup Fee,0,Ctnr/PLT/KG,其他提货费
+d.osw,Sorting,0,carton/SKU,分拣费
+d.osw,Labeling,0,carton,贴标费
+d.osw,Other warehouse Fees,0,PLT/CBM,其他仓库费
+d.osw,BOL,0,FTL,提单费
+d.truck,Seal,0,FTL,专车铅封费
+d.dray,Exam Site Drayage,0,Ctnr,查验站提送柜
+d.dray,Scale Ticket,0,Ctnr,称重费
+d.dray,Triaxle Chassis,0,Ctnr,三轴车架费
+d.dray,Terminal Dry Run,0,Ctnr,港口空驶费
+d.dray,Unplanned Overnight,0,Ctnr/PLT/KG,额外司机过夜费
+d.dray,Weekend/Night Delivery Surcharge,0,Ctnr/PLT/KG,周末夜间派送费
+d.dray,Stop Off,0,Ctnr/PLT/KG,多点卸货费
+d.dray,Delivery Drun Run,0,Ctnr/PLT/KG,送柜空驶费
+d.truck,Unplanned Overnight,0,FTL,额外司机过夜费
+d.truck,Weekend/Night Delivery Surcharge,0,FTL,周末夜间派送费

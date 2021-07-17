@@ -1,0 +1,7 @@
+﻿ID,refID,category,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+SeaSky-1,TCNU4804419,Customs Entry Fee,2951.6,1,,2951.6,2121/6/10,2021/7/1,0,2951.6,exam fee,Confirmed
+SeaSky-2,TGBU4100997,Per Diem,805,1,,805,2021/6/15,2021/6/22,0,805,-,Confirmed
+SeaSky-3,CMAU5715721,Customs Entry Fee,90,1,,90,2021/7/6,,0,90,换单费,Confirmed
+SeaSky-4,OOCU7182187,Per Diem,570,1,,570,2021/6/14,2021/6/28,15,585,-,Confirmed
+SeaSky-6,TCNU4387228,Yard Storage,140,1,,140,2021/6/27,2021/6/28,0,140,-,Confirmed
+SeaSky-5,BMOU5451288,Yard Storage,40,1,,40,2021/6/11,2021/6/14,0,40,船公司chassis fee（evergreen）,Confirmed
