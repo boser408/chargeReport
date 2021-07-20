@@ -20,7 +20,7 @@ import static com.mangrove.chargereport.genManage.CardConstant.*;
 class ChargeReportApplicationTests {
     InAndOut inAndOut=new InAndOutImp();
 
-   /* @Test
+    @Test
     void emptyListTest() {
       String testPath=dataPathPrex+"Template"+sep+"ctnrlist0616.csv";
       List<IdName> idNameList=inAndOut.readIdNameFromCSV(testPath);
@@ -57,5 +57,5 @@ class ChargeReportApplicationTests {
         inAndOut.saveReportToCSV(reportList,allApproved);
         inAndOut.saveReportToCSV(reportList,allRejected);
         inAndOut.saveReportToCSV(reportList,allSubmitted);
-    }*/
+    }
 }

@@ -1,5 +1,6 @@
 package com.mangrove.chargereport.controller;
 
+import com.mangrove.chargereport.entity.ChargeRecord;
 import com.mangrove.chargereport.entity.IdName;
 import com.mangrove.chargereport.entity.LSPupload;
 import com.mangrove.chargereport.entity.Report;
@@ -19,9 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.mangrove.chargereport.genManage.CardConstant.*;
 
@@ -47,7 +47,15 @@ public class ReportController {
     public String getFinalPath(String lspName){
         return dataPathPrex+"Dray"+sep+lspName+sep+"approved-"+lspName+".csv";
     }
+    public String getTempRptPath(){
+        return dataPathPrex+"Dray"+sep+getLspName()+sep+"Temp"+sep+"tempUploadReport.csv";
+    }
 
+    String loginName=getLspName();
+    String pendingPath=dataPathPrex+"Dray"+sep+loginName+sep+"pending-"+loginName+".csv";
+    String submitPath=dataPathPrex+"Dray"+sep+loginName+sep+"submitted-"+loginName+".csv";
+    String approvedPath=dataPathPrex+"Dray"+sep+loginName+sep+"approved-"+loginName+".csv";
+    String temRptPath=dataPathPrex+"Dray"+sep+loginName+sep+"Temp"+sep+"tempUploadReport.csv";
 
     @RequestMapping("/drayrpt/ctnrlist")
     public String ctnrlist(Model model){
@@ -90,24 +98,48 @@ public class ReportController {
 
     @RequestMapping("/drayrpt/reviewUpload")
     public String reviewUpload(@RequestParam("filePath") MultipartFile csvFile,Model model){
-        String tempPath=dataPathPrex+"Dray"+sep+getLspName()+sep+"Temp"+sep;
-        String tempReport=tempPath+"tempUploadReport.csv";
+
         List<LSPupload> lsPuploadList=inAndOut.importLSPuploadFromMPF(csvFile);
         int year=LocalDate.now().getYear();
         for(LSPupload lsPupload:lsPuploadList){
             lsPupload.setStartTime(year+"/"+lsPupload.getStartTime());
             lsPupload.setEndTime(year+"/"+lsPupload.getEndTime());
         }
-        inAndOut.saveLSPuploadToCSV(lsPuploadList,tempReport);
+        inAndOut.saveLSPuploadToCSV(lsPuploadList,temRptPath);
         model.addAttribute("lsPuploads",lsPuploadList);
         return "drayReviewUpload";
+    }
+    @RequestMapping("/drayrpt/rptsubmit")
+    public String handelRptSubmit(Model model){
+        List<LSPupload> lsPuploadList=inAndOut.readLSPuploadFromCSV(temRptPath);
+        List<ChargeRecord> pendingList=inAndOut.readChargeRecordFromCSV(pendingPath);
+        List<ChargeRecord> submitList=inAndOut.readChargeRecordFromCSV(submitPath);
+        List<ChargeRecord> approvedList=inAndOut.readChargeRecordFromCSV(approvedPath);
+        int maxID=getMaxId(pendingList,submitList,approvedList);
+        for (LSPupload lsPupload:lsPuploadList){
+            maxID++;
+            ChargeRecord chargeRecord=new ChargeRecord(lsPupload);
+            chargeRecord.setId(String.valueOf(maxID));
+            if(lsPupload.getCostStatus().equals("Confirmed")){
+                submitList.add(chargeRecord);
+            }else {
+                pendingList.add(chargeRecord);
+            }
+        }
+        inAndOut.saveChargeRecordToCSV(pendingList,pendingPath);
+        inAndOut.saveChargeRecordToCSV(submitList,submitPath);
+        inAndOut.saveChargeRecordToCSV(approvedList,approvedPath);
+        model.addAttribute("reports",pendingList);
+        model.addAttribute("confreports",submitList);
+        model.addAttribute("adhocFinals",approvedList);
+        return "drayissuelist";
     }
     @RequestMapping("/drayrpt/del")
     public String drayrptDel(@RequestParam("delID") String delID,Model model){
         delRptById(getPendingPath(getLspName()),delID);
-        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
-        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
-        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
+        model.addAttribute("reports",inAndOut.readChargeRecordFromCSV(pendingPath));
+        model.addAttribute("confreports",inAndOut.readChargeRecordFromCSV(submitPath));
+        model.addAttribute("adhocFinals",inAndOut.readChargeRecordFromCSV(approvedPath));
         return "drayissuelist";
     }
 
@@ -150,9 +182,9 @@ public class ReportController {
             addNewRpt(allSubmitted,toAllsubmit);
             delRptById(getPendingPath(getLspName()),rptUpdates[0]);
         }
-        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
-        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
-        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
+        model.addAttribute("reports",inAndOut.readChargeRecordFromCSV(pendingPath));
+        model.addAttribute("confreports",inAndOut.readChargeRecordFromCSV(submitPath));
+        model.addAttribute("adhocFinals",inAndOut.readChargeRecordFromCSV(approvedPath));
         return "drayissuelist";
     }
 
@@ -169,9 +201,9 @@ public class ReportController {
             System.out.println("newId is---------"+newId);
             addNewRpt(allSubmitted,toAllsubmit);
         }
-        model.addAttribute("reports",inAndOut.readReportFromCSV(getPendingPath(getLspName())));
-        model.addAttribute("confreports",inAndOut.readReportFromCSV(getSubmitPath(getLspName())));
-        model.addAttribute("adhocFinals",inAndOut.readReportFromCSV(getFinalPath(getLspName())));
+        model.addAttribute("reports",inAndOut.readChargeRecordFromCSV(pendingPath));
+        model.addAttribute("confreports",inAndOut.readChargeRecordFromCSV(submitPath));
+        model.addAttribute("adhocFinals",inAndOut.readChargeRecordFromCSV(approvedPath));
         return "drayissuelist";
     }
 
@@ -361,5 +393,20 @@ public class ReportController {
         reportList.add(report);
         inAndOut.saveReportToCSV(reportList,filePath);
     }
-
+    public int getMaxId(List<ChargeRecord> pendingList,List<ChargeRecord> submitList,List<ChargeRecord> approvedList){
+        int nonZero=pendingList.size()*submitList.size()*approvedList.size();
+        int maxId=1;
+        if(nonZero>0){
+            pendingList.sort(Comparator.comparing(ChargeRecord::getId));
+            submitList.sort(Comparator.comparing(ChargeRecord::getId));
+            approvedList.sort(Comparator.comparing(ChargeRecord::getId));
+            ArrayList<String> strings = new ArrayList<String>();
+            strings.add(pendingList.get(pendingList.size()-1).getId());
+            strings.add(submitList.get(submitList.size()-1).getId());
+            strings.add(approvedList.get(approvedList.size()-1).getId());
+            Collections.sort(strings);
+            maxId=Integer.parseInt(strings.get(2));
+        }
+        return maxId;
+    }
 }

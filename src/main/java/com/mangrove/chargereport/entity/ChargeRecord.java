@@ -45,6 +45,25 @@ public class ChargeRecord {
         this.csopComments = csopComments;
     }
 
+    public ChargeRecord(LSPupload lsPupload) {
+        this.id="0";
+        this.refID = lsPupload.getRefID();
+        this.leg = lsPupload.getLeg();
+        this.category = lsPupload.getCategory();
+        this.cn = lsPupload.getCn();
+        this.rateperuom = lsPupload.getRateperuom();
+        this.qty = lsPupload.getQty();
+        this.uom = lsPupload.getUom();
+        this.charge = lsPupload.getCharge();
+        this.startTime = lsPupload.getStartTime();
+        this.endTime = lsPupload.getEndTime();
+        this.costAdjust = lsPupload.getCostAdjust();
+        this.total = lsPupload.getTotal();
+        this.note1 = lsPupload.getNote1();
+        this.costStatus = lsPupload.getCostStatus();
+        this.csopComments=" ";
+    }
+
     @Override
     public String toString() {
         return id+","+refID+","+leg+","+category+","+cn+","+rateperuom+","+qty+","+uom+","+charge+","+startTime

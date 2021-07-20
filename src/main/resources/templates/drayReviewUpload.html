@@ -182,18 +182,6 @@
             responsive: true
         });
     })
-    function del(myid) {
-        var r = confirm("Delete this Row?");
-        if (r) {
-            $.post("/drayrpt/ctnrdelById", "myid=" + myid, function (data) {
-                alert(data);
-                window.location.href = "/drayrpt/ctnrfindAll";
-            }, "text");
-        } else {
-            alert("Delete Cancelled");
-        }
-    }
-
 
 </script>
 </body>
