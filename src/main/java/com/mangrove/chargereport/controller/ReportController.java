@@ -231,7 +231,28 @@ public class ReportController {
                model.addAttribute("chargeRecord",chargeRecord);
             }
         }
+        model.addAttribute("id",myid);
         return "opAddComments";
+    }
+
+    @RequestMapping("/op/submitComments")
+    public String submitComments(@RequestParam("id")String id,
+                                 @RequestParam("comments")String comts,Model model){
+        if(comts.contains(",")){
+            comts=comts.replace(","," ");
+        }
+        List<ChargeRecord> chargeRecordList=inAndOut.readChargeRecordFromCSV(allSubmitted);
+        for (ChargeRecord chargeRecord:chargeRecordList){
+            if (chargeRecord.getId().equals(id)){
+                chargeRecord.setCsopComments(comts);
+                inAndOut.saveChargeRecordToCSV(chargeRecordList,allSubmitted);
+                break;
+            }
+        }
+        model.addAttribute("submitted",inAndOut.readChargeRecordFromCSV(allSubmitted));
+        model.addAttribute("approved",inAndOut.readChargeRecordFromCSV(allApproved));
+        model.addAttribute("rejected",inAndOut.readChargeRecordFromCSV(allRejected));
+        return "opChargelist";
     }
 
     @RequestMapping("/op/rejcharge")

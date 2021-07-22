@@ -141,6 +141,7 @@
                                                     <td>Total</td>
                                                     <td>Note1</td>
                                                     <td>CostStatus</td>
+                                                    <td>Comments</td>
                                                     <td>Add Comments</td>
                                                     <td>Reject</td>
                                                     <td>Approve</td>
@@ -164,6 +165,7 @@
                                                     <td th:text="${p.total}"></td>
                                                     <td th:text="${p.note1}"></td>
                                                     <td th:text="${p.costStatus}"></td>
+                                                    <td th:text="${p.csopComments}"></td>
                                                     <td ><a th:href="@{/op/addComments(myid=${p.id})}">AddCommends</a></td>
                                                     <td><input type="button" value="Reject" th:data-id="${p.id}" onclick="rej(this.getAttribute('data-id'))"></td>
                                                     <td><input type="button" value="Approve" th:data-id="${p.id}" onclick="apr(this.getAttribute('data-id'))"></td>
