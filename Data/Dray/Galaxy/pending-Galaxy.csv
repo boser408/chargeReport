@@ -1,1 +1,1 @@
-﻿ID,refID,category,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+﻿ID,refID,Leg,category,CN,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus,CSOPcomments

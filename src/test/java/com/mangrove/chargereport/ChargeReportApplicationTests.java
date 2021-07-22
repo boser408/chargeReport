@@ -1,8 +1,6 @@
 package com.mangrove.chargereport;
 
-import com.mangrove.chargereport.entity.IdName;
-import com.mangrove.chargereport.entity.Report;
-import com.mangrove.chargereport.entity.SimpleRateTemp;
+import com.mangrove.chargereport.entity.*;
 import com.mangrove.chargereport.tools.InAndOut;
 import com.mangrove.chargereport.tools.InAndOutImp;
 import org.junit.jupiter.api.Test;
@@ -11,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import static com.mangrove.chargereport.genManage.CardConstant.*;
@@ -22,11 +21,14 @@ class ChargeReportApplicationTests {
 
     @Test
     void emptyListTest() {
-      String testPath=dataPathPrex+"Template"+sep+"ctnrlist0616.csv";
-      List<IdName> idNameList=inAndOut.readIdNameFromCSV(testPath);
-        for(IdName idName:idNameList){
-            System.out.println(idName.toString());
-        }
+      String testPath=dataPathPrex+"Template"+sep+"LSPuploadTemp.csv";
+        int year= LocalDate.now().getYear();
+      for (LSPupload lsPupload:inAndOut.readLSPuploadFromCSV(testPath)){
+          if(lsPupload.getStartTime().contains("/")){
+              lsPupload.setStartTime(year+"/"+lsPupload.getStartTime());
+          }
+          System.out.println(lsPupload.toString());
+      }
     }
 
     @Test
@@ -57,5 +59,23 @@ class ChargeReportApplicationTests {
         inAndOut.saveReportToCSV(reportList,allApproved);
         inAndOut.saveReportToCSV(reportList,allRejected);
         inAndOut.saveReportToCSV(reportList,allSubmitted);
+    }
+
+    @Test
+    void genManage(){
+        List<ChargeRecord> chargeRecordList=new ArrayList<>();
+        for(IdName idName:inAndOut.readIdNameFromCSV(lsplistPath)){
+            String lspName=idName.getName();
+            String filePath=dataPathPrex+"Dray"+sep+lspName;
+            String pRptPath=dataPathPrex+"Dray"+sep+lspName+sep+"pending-"+lspName+".csv";
+            String submitPath=dataPathPrex+"Dray"+sep+lspName+sep+"submitted-"+lspName+".csv";
+            String finalReportPath=dataPathPrex+"Dray"+sep+lspName+sep+"approved-"+lspName+".csv";
+            inAndOut.saveChargeRecordToCSV(chargeRecordList,pRptPath);
+            inAndOut.saveChargeRecordToCSV(chargeRecordList,submitPath);
+            inAndOut.saveChargeRecordToCSV(chargeRecordList,finalReportPath);
+        }
+        inAndOut.saveChargeRecordToCSV(chargeRecordList,allApproved);
+        inAndOut.saveChargeRecordToCSV(chargeRecordList,allRejected);
+        inAndOut.saveChargeRecordToCSV(chargeRecordList,allSubmitted);
     }
 }

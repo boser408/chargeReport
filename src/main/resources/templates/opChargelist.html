@@ -128,7 +128,9 @@
                                                 <tr>
                                                     <td class="firstCol">ID</td>
                                                     <td>RefID</td>
+                                                    <td>Leg</td>
                                                     <td>Category</td>
+                                                    <td>Cn</td>
                                                     <td>Rate/uom</td>
                                                     <td>Qty</td>
                                                     <td>UOM</td>
@@ -139,6 +141,7 @@
                                                     <td>Total</td>
                                                     <td>Note1</td>
                                                     <td>CostStatus</td>
+                                                    <td>Add Comments</td>
                                                     <td>Reject</td>
                                                     <td>Approve</td>
 
@@ -148,7 +151,9 @@
                                                 <tr th:each="p:${submitted}">
                                                     <td class="firstCol" id="myid" th:text="${p.id}"></td>
                                                     <td th:text="${p.refID}"></td>
+                                                    <td th:text="${p.leg}"></td>
                                                     <td th:text="${p.category}"></td>
+                                                    <td th:text="${p.cn}"></td>
                                                     <td th:text="${p.rateperuom}"></td>
                                                     <td th:text="${p.qty}"></td>
                                                     <td th:text="${p.uom}"></td>
@@ -159,6 +164,7 @@
                                                     <td th:text="${p.total}"></td>
                                                     <td th:text="${p.note1}"></td>
                                                     <td th:text="${p.costStatus}"></td>
+                                                    <td ><a th:href="@{/op/addComments(myid=${p.id})}">AddCommends</a></td>
                                                     <td><input type="button" value="Reject" th:data-id="${p.id}" onclick="rej(this.getAttribute('data-id'))"></td>
                                                     <td><input type="button" value="Approve" th:data-id="${p.id}" onclick="apr(this.getAttribute('data-id'))"></td>
 
@@ -189,7 +195,9 @@
                                                 <tr>
                                                     <td class="firstCol">ID</td>
                                                     <td>RefID</td>
+                                                    <td>Leg</td>
                                                     <td>Category</td>
+                                                    <td>CN</td>
                                                     <td>Rate/uom</td>
                                                     <td>Qty</td>
                                                     <td>UOM</td>
@@ -200,13 +208,16 @@
                                                     <td>Total</td>
                                                     <td>Note1</td>
                                                     <td>CostStatus</td>
+                                                    <td>CSOPcomments</td>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="re:${approved}">
                                                     <td class="firstCol" id="cfid" th:text="${re.id}"></td>
                                                     <td th:text="${re.refID}"></td>
+                                                    <td th:text="${re.leg}"></td>
                                                     <td th:text="${re.category}"></td>
+                                                    <td th:text="${re.cn}"></td>
                                                     <td th:text="${re.rateperuom}"></td>
                                                     <td th:text="${re.qty}"></td>
                                                     <td th:text="${re.uom}"></td>
@@ -217,6 +228,7 @@
                                                     <td th:text="${re.total}"></td>
                                                     <td th:text="${re.note1}"></td>
                                                     <td th:text="${re.costStatus}"></td>
+                                                    <td th:text="${re.csopComments}"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -244,7 +256,9 @@
                                                 <tr>
                                                     <td class="firstCol">ID</td>
                                                     <td>RefID</td>
+                                                    <td>Leg</td>
                                                     <td>Category</td>
+                                                    <td>CN</td>
                                                     <td>Rate/uom</td>
                                                     <td>Qty</td>
                                                     <td>UOM</td>
@@ -255,13 +269,16 @@
                                                     <td>Total</td>
                                                     <td>Note1</td>
                                                     <td>CostStatus</td>
+                                                    <td>CSOPcomments</td>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="rep:${rejected}">
                                                     <td class="firstCol" th:text="${rep.id}"></td>
                                                     <td th:text="${rep.refID}"></td>
+                                                    <td th:text="${rep.leg}"></td>
                                                     <td th:text="${rep.category}"></td>
+                                                    <td th:text="${rep.cn}"></td>
                                                     <td th:text="${rep.rateperuom}"></td>
                                                     <td th:text="${rep.qty}"></td>
                                                     <td th:text="${rep.uom}"></td>
@@ -272,6 +289,7 @@
                                                     <td th:text="${rep.total}"></td>
                                                     <td th:text="${rep.note1}"></td>
                                                     <td th:text="${rep.costStatus}"></td>
+                                                    <td th:text="${rep.csopComments}"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>

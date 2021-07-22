@@ -24,6 +24,25 @@ public class ChargeRecord {
     public ChargeRecord() {
     }
 
+    public ChargeRecord(ChargeRecord chargeRecord) {
+        this.id = chargeRecord.id;
+        this.refID = chargeRecord.refID;
+        this.leg = chargeRecord.leg;
+        this.category = chargeRecord.category;
+        this.cn = chargeRecord.cn;
+        this.rateperuom = chargeRecord.rateperuom;
+        this.qty = chargeRecord.qty;
+        this.uom = chargeRecord.uom;
+        this.charge = chargeRecord.charge;
+        this.startTime = chargeRecord.startTime;
+        this.endTime = chargeRecord.endTime;
+        this.costAdjust = chargeRecord.costAdjust;
+        this.total = chargeRecord.total;
+        this.note1 = chargeRecord.note1;
+        this.costStatus = chargeRecord.costStatus;
+        this.csopComments=chargeRecord.csopComments;
+    }
+
     public ChargeRecord(String id, String refID, String leg, String category, String cn, float rateperuom, float qty
             , String uom, float charge, String startTime, String endTime, float costAdjust, float total, String note1
             , String costStatus, String csopComments) {

@@ -1,1 +1,3 @@
-﻿ID,refID,category,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
+﻿ID,refID,Leg,category,CN,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus,CSOPcomments
+SeaSky-7,NYKU3220564,d.truck,Other Delivery Charges,其他送货费,35.0,1.0,FTL/PLT/KG,35.0,2021/12-4月,2021/20-4月,0.0,35.0,rush service,Confirmed, 
+SeaSky-9,CAIU6463196,d.truck,Delivery,运费,0.0,0.0,FTL/PLT/KG,920.0,2021/14-4月,2021/22-4月,0.0,920.0,1-5DAY /120 6-0 DAY/160,Confirmed, 
