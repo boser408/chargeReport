@@ -21,11 +21,15 @@ class ChargeReportApplicationTests {
 
     @Test
     void emptyListTest() {
-      String testPath=dataPathPrex+"Template"+sep+"LSPuploadTemp.csv";
-        int year= LocalDate.now().getYear();
+      String testPath=dataPathPrex+"LSPuploadTemp.csv";
+      int year= LocalDate.now().getYear();
       for (LSPupload lsPupload:inAndOut.readLSPuploadFromCSV(testPath)){
-          if(lsPupload.getStartTime().contains("/")){
-              lsPupload.setStartTime(year+"/"+lsPupload.getStartTime());
+          if(lsPupload.getStartTime().contains("-") && lsPupload.getStartTime().contains("月")){
+              String p1=lsPupload.getStartTime().split("-")[0];
+              String p2=lsPupload.getStartTime().split("-")[1];
+              String p3=p2.replace("月","/");
+              String p4=p3+p1;
+              lsPupload.setStartTime(year+"/"+p4);
           }
           System.out.println(lsPupload.toString());
       }

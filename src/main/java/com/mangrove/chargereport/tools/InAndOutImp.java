@@ -282,4 +282,34 @@ public class InAndOutImp implements InAndOut{
         String capital="Item"+","+"c1"+","+"c2"+","+"RatePerUOM"+","+"Adjust"+","+"UOM"+","+"CN";
         saveToCSV(drayRateList,capital,savePath);
     }
+
+    @Override
+    public List<NameAttr> readNameAttrFromCSV(String readPath) {
+        List<NameAttr> nameAttrList=new ArrayList<>();
+        try {
+            File filename = new File(readPath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader br = new BufferedReader(reader);
+            br.readLine();
+            String line ;
+            String cvsSplitBy=",";
+            while ((line = br.readLine())!= null) {
+                String[] pricebar=line.split(cvsSplitBy);
+                NameAttr nameAttr=new NameAttr();
+                nameAttr.setId(Integer.parseInt(pricebar[0]));
+                nameAttr.setName(pricebar[1]);
+                nameAttr.setAttr(pricebar[2]);
+                nameAttrList.add(nameAttr);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nameAttrList;
+    }
+
+    @Override
+    public void saveNameAttrToCSV(List<NameAttr> nameAttrList, String savePath) {
+        String capital="Id"+","+"Name"+","+"Attr";
+        saveToCSV(nameAttrList,capital,savePath);
+    }
 }

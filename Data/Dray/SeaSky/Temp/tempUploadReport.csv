@@ -1,10 +1,10 @@
 ﻿refID,Leg,category,CN,rateperuom,qty,uom,charge,startTime,endTime,costAdjust,total,note1,costStatus
-GCXU2286072,d.osw,Loading,装车费,940.0,1.0,PLT/carton,940.0,2021/7-4月,2021/15-4月,0.0,940.0,rush service,Estimated
-GCXU2286072,d.osw,Palletization,打托费,35.0,1.0,PLT,35.0,2021/8-4月,2021/16-4月,0.0,35.0,rush service,Estimated
-SMCU2029431,d.osw,Devanning & Unload,卸货费,980.0,1.0,Ctnr/PLT/KG/carton,980.0,2021/9-4月,2021/17-4月,0.0,980.0,rush service,Estimated
-SMCU2029431,d.osw,Storage,暂存费,35.0,1.0,PLT/CBM,35.0,2021/10-4月,2021/18-4月,0.0,35.0,rush service,Estimated
-NYKU3220564,d.chb,Import Duty,进口关税,940.0,1.0,HBL,940.0,2021/11-4月,2021/19-4月,0.0,940.0,rush service,Confirmed
-NYKU3220564,d.truck,Other Delivery Charges,其他送货费,35.0,1.0,FTL/PLT/KG,35.0,2021/12-4月,2021/20-4月,0.0,35.0,rush service,Confirmed
-SMCU2029431,d.dray,CFS Pickup,CFS提货费,120.0,4.0,PLT/KG,480.0,2021/13-4月,2021/21-4月,0.0,480.0,EXAM CNTR,Confirmed
-CAIU6463196,d.truck,Delivery,运费,0.0,0.0,FTL/PLT/KG,920.0,2021/14-4月,2021/22-4月,0.0,920.0,1-5DAY /120 6-0 DAY/160,Confirmed
-SMCU2000130,d.dray,Pre Pull,预提费,0.0,0.0,Ctnr,920.0,2021/15-4月,2021/23-4月,0.0,0.0,1-5DAY /120 6-0 DAY/160,Confirmed
+GCXU2286072,d.osw,Loading,装车费,940.0,1.0,PLT/carton,940.0,2021/4/7,2021/4/15,0.0,940.0,rush service,Estimated
+GCXU2286072,d.osw,Palletization,打托费,35.0,1.0,PLT,35.0,2021/4/8,2021/4/16,0.0,35.0,rush service,Estimated
+SMCU2029431,d.osw,Devanning & Unload,卸货费,980.0,1.0,Ctnr/PLT/KG/carton,980.0,2021/4/9,2021/4/17,0.0,980.0,rush service,Estimated
+SMCU2029431,d.osw,Storage,暂存费,35.0,1.0,PLT/CBM,35.0,2021/4/10,2021/4/18,0.0,35.0,rush service,Estimated
+NYKU3220564,d.chb,Import Duty,进口关税,940.0,1.0,HBL,940.0,2021/4/11,2021/4/19,0.0,940.0,rush service,Confirmed
+NYKU3220564,d.truck,Other Delivery Charges,其他送货费,35.0,1.0,FTL/PLT/KG,35.0,2021/4/12,2021/4/20,0.0,35.0,rush service,Confirmed
+SMCU2029431,d.dray,CFS Pickup,CFS提货费,120.0,4.0,PLT/KG,480.0,2021/4/13,2021/4/21,0.0,480.0,EXAM CNTR,Confirmed
+CAIU6463196,d.truck,Delivery,运费,0.0,0.0,FTL/PLT/KG,920.0,2021/4/14,2021/4/22,0.0,920.0,1-5DAY /120 6-0 DAY/160,Confirmed
+SMCU2000130,d.dray,Pre Pull,预提费,0.0,0.0,Ctnr,920.0,2021/4/15,2021/4/23,0.0,0.0,1-5DAY /120 6-0 DAY/160,Confirmed

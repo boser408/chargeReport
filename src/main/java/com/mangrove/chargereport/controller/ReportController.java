@@ -1,12 +1,10 @@
 package com.mangrove.chargereport.controller;
 
-import com.mangrove.chargereport.entity.ChargeRecord;
-import com.mangrove.chargereport.entity.IdName;
-import com.mangrove.chargereport.entity.LSPupload;
-import com.mangrove.chargereport.entity.Report;
+import com.mangrove.chargereport.entity.*;
 import com.mangrove.chargereport.tools.DownloadHandle;
 import com.mangrove.chargereport.tools.InAndOut;
 import com.mangrove.chargereport.tools.InAndOutImp;
+import jdk.nashorn.internal.ir.IdentNode;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static com.mangrove.chargereport.genManage.CardConstant.*;
 
@@ -51,11 +47,6 @@ public class ReportController {
         return dataPathPrex+"Dray"+sep+getLspName()+sep+"Temp"+sep+"tempUploadReport.csv";
     }
 
-    /*String loginName=getLspName();
-    String pendingPath=dataPathPrex+"Dray"+sep+loginName+sep+"pending-"+loginName+".csv";
-    String submitPath=dataPathPrex+"Dray"+sep+loginName+sep+"submitted-"+loginName+".csv";
-    String approvedPath=dataPathPrex+"Dray"+sep+loginName+sep+"approved-"+loginName+".csv";
-    String temRptPath=dataPathPrex+"Dray"+sep+loginName+sep+"Temp"+sep+"tempUploadReport.csv";*/
 
     @RequestMapping("/drayrpt/ctnrlist")
     public String ctnrlist(Model model){
@@ -83,14 +74,15 @@ public class ReportController {
         return "drayctnrlist";
     }
     @RequestMapping("/drayrpt/rcReview")
-    public String rcReview(Model model){
-        String drayRC=webRCpathPrex+"Dray"+sep+getLspName()+sep+"dray"+getLspName()+"LGB.csv";
+    public String rcReview(@RequestParam("port") String port,Model model){
+        String drayRC=webRCpathPrex+"Dray"+sep+getLspName()+sep+"dray"+getLspName()+port+".csv";
         model.addAttribute("drayRC",inAndOut.readDrayRateFromCSV(drayRC));
         return "drayRCreview";
     }
     @RequestMapping("/drayrpt/issuelist")
     public String issuelist(Model model){
         String loginName=getLspName();
+        model.addAttribute("portAva",getPortAvailablelist(loginName));
         model.addAttribute("reports",inAndOut.readChargeRecordFromCSV(getPendingPath(loginName)));
         model.addAttribute("confreports",inAndOut.readChargeRecordFromCSV(getSubmitPath(loginName)));
         model.addAttribute("adhocFinals",inAndOut.readChargeRecordFromCSV(getFinalPath(loginName)));
@@ -98,8 +90,7 @@ public class ReportController {
     }
 
     @RequestMapping("/drayrpt/reviewUpload")
-    public String reviewUpload(@RequestParam("filePath") MultipartFile csvFile,Model model){
-
+    public String reviewUpload(@RequestParam("filePath") MultipartFile csvFile,@RequestParam("port") String port,Model model){
         List<LSPupload> lsPuploadList=inAndOut.importLSPuploadFromMPF(csvFile);
         int year=LocalDate.now().getYear();
         for(LSPupload lsPupload:lsPuploadList){
@@ -107,6 +98,7 @@ public class ReportController {
             lsPupload.setEndTime(year+"/"+lsPupload.getEndTime());
         }
         inAndOut.saveLSPuploadToCSV(lsPuploadList,getTempRptPath());
+
         model.addAttribute("lsPuploads",lsPuploadList);
         return "drayReviewUpload";
     }
@@ -457,5 +449,22 @@ public class ReportController {
         List<ChargeRecord> allSubmitList=inAndOut.readChargeRecordFromCSV(allSubmitted);
         allSubmitList.addAll(chargeRecordList);
         inAndOut.saveChargeRecordToCSV(allSubmitList,allSubmitted);
+    }
+    public Vector<IdName> getPortAvailablelist(String lspName){
+        Vector<IdName> portAvaList=new Vector<>();
+        int n=0;
+        for(IdName idName:inAndOut.readIdNameFromCSV(portlistPath)){
+            String filePath=webRCpathPrex+"Dray"+sep+"DraySrvlist"+idName.getName()+".csv";
+            if(new File(filePath).exists()){
+               for(NameAttr nameAttr:inAndOut.readNameAttrFromCSV(filePath)){
+                   if(nameAttr.getName().equals(lspName)){
+                      n=n+1;
+                      portAvaList.add(new IdName(n,idName.getName()));
+                      break;
+                   }
+               }
+            }
+        }
+        return portAvaList;
     }
 }

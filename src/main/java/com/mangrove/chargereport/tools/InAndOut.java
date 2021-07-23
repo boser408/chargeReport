@@ -23,4 +23,6 @@ public interface InAndOut {
     void saveLSPuploadToCSV(List<LSPupload> lsPuploadList,String savePath);
     List<DrayRate> readDrayRateFromCSV(String readPath);
     void saveDrayRateToCSV(List<DrayRate> drayRateList,String savePath);
+    List<NameAttr> readNameAttrFromCSV(String readPath);
+    void saveNameAttrToCSV(List<NameAttr> nameAttrList,String savePath);
 }

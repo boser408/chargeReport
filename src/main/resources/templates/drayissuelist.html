@@ -330,6 +330,26 @@
                                         </div>
                                     </div>
                                     <form id="selectLSP"  action="" method="" enctype="multipart/form-data" >
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Port</th>
+                                                <th>RateCard/查看价卡</th>
+                                                <th>Select/选择关联价卡</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="s:${portAva}">
+                                                <td th:text="${s.id}"></td>
+                                                <td th:text="${s.name}"></td>
+                                                <td><a th:href="@{/drayrpt/rcReview(port=${s.name})}">RateCard/查看价卡</a></td>
+                                                <td>
+                                                    <input name="port" type="radio" th:value="${s.name}" th:checked="${s.name}">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                         <table >
                                             <tr>
                                                 <td><input id="uploadFile" type="file" class="b" name="filePath" accept=".csv"></td>
